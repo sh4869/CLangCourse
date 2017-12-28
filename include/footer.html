@@ -1,0 +1,18 @@
+<p class="footer">&copy; 2017 sh4869 All Rights reserved</p>
+<link rel="stylesheet" href="https://unpkg.com/tippy.js@1.2.0/dist/tippy.css" />
+<script src="https://unpkg.com/tippy.js@1.2.0/dist/tippy.min.js"></script>
+<script>
+var comments = document.querySelectorAll(".footnoteRef");
+var i = 0;
+for(i = 0;i < comments.length;i++){
+    var id = comments[i].href.split("#").pop();
+    var text = document.querySelector("#" + id).innerText.replace("↩","");
+    comments[i].title = text;
+    tippy(comments[i],{
+        arrow: 'small',
+        stickyDuration: 100,
+        distance: 9,
+        size: "small"
+    })
+}
+</script>
