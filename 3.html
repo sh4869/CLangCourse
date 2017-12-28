@@ -1,0 +1,582 @@
+<!DOCTYPE>
+<html >
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0" name="viewport">
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" /> 
+        <title>代入式・繰り返し文・論理演算子・switch</title>
+  <style type="text/css">
+    code {
+      white-space: pre;
+    }
+  </style>
+        <style type="text/css">
+      div.sourceCode { overflow-x: auto; }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+        margin: 0; padding: 0; vertical-align: baseline; border: none; }
+      table.sourceCode { width: 100%; line-height: 100%; }
+      td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+      td.sourceCode { padding-left: 5px; }
+      code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code > span.dt { color: #902000; } /* DataType */
+      code > span.dv { color: #40a070; } /* DecVal */
+      code > span.bn { color: #40a070; } /* BaseN */
+      code > span.fl { color: #40a070; } /* Float */
+      code > span.ch { color: #4070a0; } /* Char */
+      code > span.st { color: #4070a0; } /* String */
+      code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code > span.ot { color: #007020; } /* Other */
+      code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code > span.fu { color: #06287e; } /* Function */
+      code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      code > span.cn { color: #880000; } /* Constant */
+      code > span.sc { color: #4070a0; } /* SpecialChar */
+      code > span.vs { color: #4070a0; } /* VerbatimString */
+      code > span.ss { color: #bb6688; } /* SpecialString */
+      code > span.im { } /* Import */
+      code > span.va { color: #19177c; } /* Variable */
+      code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code > span.op { color: #666666; } /* Operator */
+      code > span.bu { } /* BuiltIn */
+      code > span.ex { } /* Extension */
+      code > span.pp { color: #bc7a00; } /* Preprocessor */
+      code > span.at { color: #7d9029; } /* Attribute */
+      code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"> 
+      <link rel="stylesheet" href="github.css" type="text/css" /> 
+      <link rel="stylesheet" href="user.css" type="text/css" /> 
+     
+</head>
+
+<body>
+  <div class="pure-menu pure-menu-horizontal menu custom-restricted-width">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="1.html" class="pure-menu-link">No.1</a></li>
+        <li class="pure-menu-item"><a href="2.html" class="pure-menu-link">No.2</a></li>
+        <li class="pure-menu-item"><a href="3.html" class="pure-menu-link">No.3</a></li>
+        <li class="pure-menu-item"><a href="4.html" class="pure-menu-link">No.4</a></li>
+        <li class="pure-menu-item"><a href="5.html" class="pure-menu-link">No.5</a></li>
+    </ul>
+</div> 
+      <div id="header">
+    <h1 class="title">代入式・繰り返し文・論理演算子・switch</h1>
+              </div>
+      <article class="body"> 
+<h1 id="代入式繰り返し文論理演算子switch">代入式・繰り返し文・論理演算子・switch</h1>
+<h2 id="はじめに">はじめに</h2>
+<p>前回は型や条件分岐について勉強しました。簡単にプログラムで何を学んだのか振り返ってみましょうか。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> ans;
+    <span class="dt">int</span> a,b;
+    printf(<span class="st">&quot;1か2を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;ans);
+    <span class="cf">if</span>(ans == <span class="dv">1</span>){
+        printf(<span class="st">&quot;足し算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+        printf(<span class="st">&quot;一つ目の数字を入力してください。:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+        printf(<span class="st">&quot;二つ目の数字を入力してください。:&quot;</span>)
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+        printf(<span class="st">&quot;足し算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a+b);
+    } <span class="cf">else</span> <span class="cf">if</span>(ans == <span class="dv">2</span>){
+        printf(<span class="st">&quot;引き算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+        printf(<span class="st">&quot;一つ目の数字を入力してください。:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+        printf(<span class="st">&quot;二つ目の数字を入力してください。:&quot;</span>)
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+        printf(<span class="st">&quot;引き算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a-b);
+    } <span class="cf">else</span> {
+        printf(<span class="st">&quot;1か2を入力してください。</span><span class="sc">\n</span><span class="st">&quot;</span>)
+    }
+}</code></pre></div>
+<p>このプログラムは、実は前回の最後の練習問題の回答にもなっています。ちゃんとプログラムの意味を説明できますか？コメントを書いて、わからないところがないか調べるのもいいでしょう。</p>
+<h2 id="代入式について">代入式について</h2>
+<p>新しい内容の前に、すこしだけ前回までの内容を補足しておきます。具体的には、代入式についてです。</p>
+<p>代入式とは、以下のようなものです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> a,b,c;
+a = <span class="dv">3</span>;
+b = <span class="dv">4</span>;
+c = <span class="dv">4</span> * <span class="dv">3</span>;
+a = b * <span class="dv">3</span>;</code></pre></div>
+<p>値を変数に代入するので、これらの式を<strong>代入式</strong>といいます。さて、ここで問題です。a、b、c、それぞれの値は何になるでしょうか？</p>
+<p>答えは、<code>a = 12,b=4,c = 12</code>です。ちゃんと答えられましたか？二行目でaには3が代入されていますが、五行目でもう一度代入されているので結果としてaには <code>b * 3 = 4 * 3 = 12</code> が代入されます。</p>
+<p>さて、次はちょっと混乱するかもしれません。下のプログラムで、変数aに最終的に入っている値は何になるでしょうか？</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> a = <span class="dv">3</span>;
+a = a * <span class="dv">3</span>;</code></pre></div>
+<p>答えは9です。なんでだろう？とおもう人は、演算子の優先度を思い出してください。まず最初に、aには3が代入されます。次に、<code>a = a * 3;</code> では、まず優先度の高い<code>=</code>が評価され、<code>a</code> に<code>a * 3</code>が代入されることになります。そして、<code>a * 3</code>を評価する時点では、aには3が代入されていますから、<code>a * 3 = 3 * 3 = 9</code>となります。よってaには9が代入されるのです。</p>
+<p>これは少しわかりづらいことですから、頑張って理解しましょう。下の例を見て、共通項を見つけるような気持で理解するのもありです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> a = <span class="dv">3</span>;
+a = a * a; <span class="co">// a * a = 3 * 3 = 9、なのでaには9が代入される。</span>
+<span class="dt">int</span> b = <span class="dv">4</span>;
+b = b - b; <span class="co">// b - b = 4 - 4 = 0、なのでbには4が代入される。</span>
+<span class="dt">int</span> c = <span class="dv">0</span>;
+c = c + b + a; <span class="co">// c + b + a = 0 + 9 + 0 = 9、よってcには9が代入される</span></code></pre></div>
+<p>わかりましたでしょうか？この辺は混乱のもとになりがちです。覚えて、わからなくなったら上のサンプルを見て自分のプログラムが正しいか、もう1回考えてみましょう。</p>
+<h3 id="section">+=、-=、*=、/=</h3>
+<p>次は代入演算子の中でも特別な演算子について勉強します。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> a = <span class="dv">20</span>;
+a += <span class="dv">30</span>;</code></pre></div>
+<p>上のプログラムでは、aの値は50になります。理由はわかるでしょうか？<code>+=</code>というのは、左辺に、左辺の現在の値と右辺の値を足したものを代入する演算子です。演算子をバラさずに書くとこのような感じになります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> a = <span class="dv">20</span>;
+a = a + <span class="dv">30</span>;</code></pre></div>
+<p><code>*=</code>、<code>-=</code>、<code>/=</code>も同じような意味になります。次のサンプルを見てください。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> a = <span class="dv">30</span>;
+a -= <span class="dv">2</span>; <span class="co">// これは&quot;a = a - 2;&quot;と同じ。aは28になる。</span>
+<span class="dt">int</span> b = <span class="dv">40</span>;
+b *= <span class="dv">2</span>; <span class="co">// これは&quot;b = b * 2;&quot;と同じ。bは80になる。</span>
+<span class="dt">int</span> c = <span class="dv">30</span>;
+c /= <span class="dv">5</span>; <span class="co">// これは&quot;c = c / 5;&quot;と同じ。cは6となる。</span></code></pre></div>
+<h3 id="section-1">++、--</h3>
+<p>代入式の中で、特殊な構文を教えます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> i = <span class="dv">0</span>;
+i++;</code></pre></div>
+<p><code>i++</code>は、<code>i += 1</code>と同じ意味を持ちます。上のプログラムの中ではiは1となるわけです。同じように、<code>i--</code>は<code>i -= 1</code>と同じ意味を持ちます。</p>
+<p>この2つの演算子を<strong>後置演算子</strong>と言います。後置演算子が特別に定義されているのは、よく使われるからです。次の繰り返しの章に入ると、どういうことかわかります。</p>
+<h3 id="まとめ">まとめ</h3>
+<ul>
+<li><code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>といった代入演算子を使うことでプログラムをシンプルに書くことができる。</li>
+<li><code>++</code>や<code>--</code>といった代入式の構文も存在する</li>
+</ul>
+<h2 id="繰り返し文">繰り返し文</h2>
+<p>さて、前回までで2つの数の足し算や引き算、それを少し応用すれば掛け算や割り算もできることがわかりました。では、次は累乗の計算について考えてみましょう。</p>
+<p>まず一番簡単に、入力された数字を二乗して返すプログラムを考えてみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> num;
+    printf(<span class="st">&quot;二乗したい数字を入力してください:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;num);
+    printf(<span class="st">&quot;%dの二乗は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,num,num * num);
+}</code></pre></div>
+<p>簡単ですね。このぐらいのプログラムであれば、五分ほどで書けるようになってると良いですね。</p>
+<p>さて、二乗の計算は簡単でした。では、五乗の計算はどうでしょうか？</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> num;
+    printf(<span class="st">&quot;5乗したい数字を入力してください:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;num);
+    printf(<span class="st">&quot;%dの5乗は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,num,num * num * num * num * num);
+}</code></pre></div>
+<p>最後の行のnumが増えるだけですね。このプログラムを実行するときは、numの数が大きくなりすぎないように注意してください。今回は扱いませんが、オーバーフローという現象が起きます。</p>
+<p>さて、このようなプログラムを書いていけば、累乗の計算はなんとかできそうだなということはわかりました。しかし、ここで1つ問題があります。「何乗するかもユーザーに決めてもらいたい」ときはどのようにすればいいのでしょう。</p>
+<p>このときに必要なのが、<strong>繰り返し文</strong>です。</p>
+<h3 id="while文">while文</h3>
+<p>繰り返し文はその名の通り、処理を繰り返すものです。まずはwhile文について勉強して行きます。</p>
+<p>while文の構文はこのようになります。</p>
+<blockquote>
+<p><code>while(繰り返す条件となる式){繰り返したい処理;}</code></p>
+</blockquote>
+<p>if文のときと同じように、カッコの中には真か偽かの条件を入れます。ちょっとサンプルを見てみましょう。ユーザーが0を入力するまで「0を入力すると終了します。」と繰り返すプログラムです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> a = <span class="dv">1</span>;
+    <span class="cf">while</span>(a){
+        printf(<span class="st">&quot;0を入力すると終了します。:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>whileの中の条件はaですから、aが0以外であればwhile文の中の処理を繰り返します。aに0が代入されたら、whileの中の条件が偽となりますので、表示は終了します。</p>
+<p>今まで学んだif文などと違うところは、while文は処理が繰り返されるということです。与えられた条件式が真にならない限り、中の処理はずっと繰り返されます。</p>
+<div class="figure">
+<img src="https://i.gyazo.com/68e7734373335a829f06e00d0910e0c9.png" alt="上記のFlowChart" style="width:20.0%" />
+<p class="caption">上記のFlowChart</p>
+</div>
+<p>これはフローチャートと言って、プログラムの流れを書く図です。これのように、条件式が偽にならない限りはずっと動き続けます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="cf">while</span>(<span class="dv">1</span>){
+        printf(<span class="st">&quot;終わらない！！！なんで？？？</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>つまり、こういうプログラムを書くと終わらなくなってしまうということです<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。このプログラムが終わらないのは、条件式が1、つまりずっと真になっているからです。このプログラムは一生終わりません。もし実行してしまった人は、強制終了しましょう。場合によってはエラーを吐かれます。</p>
+<p>while文を使うと、カウントのようなことも出来ます。これは0から9までカウントして終わるプログラムです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> i;
+    i = <span class="dv">0</span>;
+    <span class="co">// &lt; は数学と同じく、大きさの判定をする演算子です。</span>
+    <span class="co">// 左辺より右辺が大きければ真、そうでなければ偽となります。</span>
+    <span class="cf">while</span>(i &lt; <span class="dv">10</span>){
+        printf(<span class="st">&quot;%d &quot;</span>,i);
+        i++; <span class="co">// 後置演算子。 i = i + 1の意味です。</span>
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>iという変数を繰り返しごとに足していくと、最終的には10になって、while文の中の条件式と異なるのでwhile文の中を抜けます。このように、カウントをするプログラムを書くことができるのです。</p>
+<p>もうちょっとサンプルを見てみましょう。これは、5乗をwhile文を使って計算するプログラムです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> input,answer = <span class="dv">1</span>; <span class="co">// inputは入力用、answerは表示する用</span>
+    <span class="dt">int</span> count = <span class="dv">0</span>; <span class="co">// カウンター。この変数を繰り返しごとに。</span>
+    printf(<span class="st">&quot;好きな数字を入力してください:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;input); <span class="co">// inputに累乗したい数字を入力</span>
+    <span class="cf">while</span>(count &lt; <span class="dv">5</span>){
+        answer *= input; <span class="co">// answer = answer * input;なので、繰り返しのたびにinputが掛け合わされて行きます。</span>
+        count++; <span class="co">// 繰り返されるたびにcounterが大きくなっていくので、四回繰り返すと4より大きくなってプログラムが終了する。</span>
+    }
+    printf(<span class="st">&quot;%dです。</span><span class="sc">\n</span><span class="st">&quot;</span>,answer);
+}</code></pre></div>
+<p>少し難しくなってしまいました。理解できるでしょうか？コメントをつけておきましたので、頑張って理解してみてください。</p>
+<p>こんな風に、while文を使ってプログラムを組んでいきましょう。では練習問題です。</p>
+<h3 id="練習問題">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>ユーザーに『累乗する値』と『何乗するか』どちらも入力させ、結果を表示するプログラムをwhile文を使って書きなさい。</li>
+</ol>
+<blockquote>
+<p>ヒント : 上のプログラムを部分的に変えるだけでOK。上のプログラムで何乗するかを決めているところはどこか探してみよう。それをユーザーからの入力にできれば、問題のプログラムを作ることができる。</p>
+</blockquote>
+<h3 id="for">for</h3>
+<p>while文をかいていて、「繰り返しもっと簡単に書けないかな」と思いませんでしたか？思いましたね？あなたは優秀です。</p>
+<p>繰り返す数が決まっている場合、while文よりも簡単に書ける記法があります。それはfor文です。for文の構文は次のようになっています。</p>
+<blockquote>
+<p><code>for(式1;式2;式3) { 文;}</code></p>
+</blockquote>
+<p>これは、while文の次の式と同じ意味になります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">式1;
+<span class="cf">while</span>(式2){
+    文;
+    式3;
+}</code></pre></div>
+<p>これだけだと意味がわからない人は、次のサンプルを見てください。これは0から9までカウントして終わるプログラムです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> i;
+    <span class="cf">for</span>(i = <span class="dv">0</span>;i &lt; <span class="dv">10</span>; i++){
+        printf(<span class="st">&quot;%d &quot;</span>,i);
+    }
+}</code></pre></div>
+<p>このプログラム、どこかでみませんでしたか？whileでカウンタを作って見た時と同じプログラムですね。先程示したfor文とwhile文で、同じ意味になっていることを確認してみてください。</p>
+<p>for文は、繰り返し処理の中でも回数が決まっているものに便利使うことが出来ます。たとえば、5乗を計算するプログラムをまたfor文で書き直してみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> input, answer;  
+    <span class="dt">int</span> count;
+    answer = <span class="dv">1</span>;
+    printf(<span class="st">&quot;数字を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;input);
+    <span class="cf">for</span>(count = <span class="dv">0</span>;count &lt; <span class="dv">5</span>;count++){
+        answer *= input;
+    }
+    printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>,answer);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>無事置き換えができました。やったね。</p>
+<p>for文は、その書き方から多くの人が躓く部分です。はじめのうちはわからなくなったらwhile文との置き換えを参照するのもよいでしょう。</p>
+<p>次に練習問題と行きたいところなんですが、for文の特殊な例があるので紹介しておきます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>;i++){
+        printf(<span class="st">&quot;%d &quot;</span>,i);
+    }
+}</code></pre></div>
+<p><code>for(int i = 0; i &lt; 10;i++)</code>となっています。今までとは違い、<code>i = 0</code>が<code>int i = 0</code>に変わっていますね。上のプログラムのようにすると、予め宣言していなくてもfor文のカウンタ用に使う変数をfor文内で初期化できます。</p>
+<p>上のfor文は、while文と正確な置き換えが出来ません。よくわからないな、という人はプログラムの意味が理解できればそれでいいです。</p>
+<h3 id="練習問題-1">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>ユーザーに『累乗する値』と『何乗するか』どちらも入力させ、結果を表示するプログラムをfor文を使って書きなさい。</li>
+</ol>
+<h3 id="まとめ-1">まとめ</h3>
+<ul>
+<li>繰り返し文を使って繰り返しをすることができる</li>
+</ul>
+<h2 id="論理演算子">論理演算子</h2>
+<p>次は論理演算子です。論理演算子というのは論理演算に使うための演算子です。説明になっていませんね。次のプログラムを見てください。入力された1つ目の数字が3で割り切れ、かつ入力された2つ目の数字が5で割り切れるときだけ文字を表示するプログラムです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> a,b;
+    printf(<span class="st">&quot;一つ目の数字を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+    printf(<span class="st">&quot;二つ目の数字を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+    <span class="cf">if</span>(a % <span class="dv">3</span> == <span class="dv">0</span>){ <span class="co">// 一つ目の数字を3で割ったあまりが0</span>
+        <span class="cf">if</span>(b % <span class="dv">5</span> == <span class="dv">0</span>){ <span class="co">// 二つ目の数字を5で割ったあまりが0</span>
+            printf(<span class="st">&quot;よかったね。:&quot;</span>);
+        }
+    }
+}</code></pre></div>
+<p>ちょっと今までとは違って、if文の中にif文が出てきているので驚いてますか?でも心配しないでください。読んでいけば、ちゃんと「入力され1つ目の数字が3で割り切れ、かつ入力された2つ目の数字が5で割り切れるときだけ文字を表示するプログラム」になっていることがわかります。</p>
+<p>さて、これを書きましたが、ちょっと野暮ったいですよね。if文の処理の中にif文しか書かれていないわけですし、この条件をまとめて1つのif文の中にかけたら便利ですよね。そんなとき使えるのが、論理演算子になります。</p>
+<p>論理演算子は、より複雑な条件式を作るときにつかえます。上のプログラムは、論理演算子を使うとこんなふうになります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> a,b;
+    printf(<span class="st">&quot;一つ目の数字を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+    printf(<span class="st">&quot;二つ目の数字を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+    <span class="co">// 一つ目の数字を3で割ったあまりが0</span>
+    <span class="co">// 二つ目の数字を5で割ったあまりが0</span>
+    <span class="cf">if</span>(a % <span class="dv">3</span> == <span class="dv">0</span> &amp;&amp; b % <span class="dv">5</span> == <span class="dv">0</span>){ 
+        printf(<span class="st">&quot;よかったね。:&quot;</span>);
+    }
+}</code></pre></div>
+<p><code>&amp;&amp;</code>演算子はAND演算子といい、左辺式と右辺式がどちらも真であるときに真となります。どちらかが偽であれば、もう片方が真であっても偽となります。</p>
+<p>論理演算子には次のようなものがあります。</p>
+<table>
+<thead>
+<tr class="header">
+<th>演算子</th>
+<th>演算子名</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>a &amp;&amp; b</code></td>
+<td>AND演算子</td>
+<td>aとbがどちらも真のときのみ真</td>
+</tr>
+<tr class="even">
+<td><code>a || b</code></td>
+<td>OR演算子</td>
+<td>aかbどちらかが真のときのみ真</td>
+</tr>
+<tr class="odd">
+<td><code>!a</code></td>
+<td>NOT演算子</td>
+<td>aが偽のとき真、aが真のとき偽</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">!<span class="dv">0</span>; <span class="co">// 0だけであれば偽だが、&quot;!&quot;が先頭についているので真となる。  !0 == 1.</span>
+<span class="dt">int</span> a = <span class="dv">30</span>;
+<span class="dt">int</span> b = <span class="dv">25</span>;
+a % <span class="dv">5</span> == <span class="dv">0</span> &amp;&amp; b % <span class="dv">5</span> == <span class="dv">0</span>; <span class="co">//真。</span>
+a % <span class="dv">5</span> == <span class="dv">0</span> || b % <span class="dv">5</span> == <span class="dv">0</span>; <span class="co">//真。a &amp;&amp; b が真であれば、a || bは必ず真になる。</span>
+a % <span class="dv">3</span> == <span class="dv">0</span> &amp;&amp; b % <span class="dv">3</span> == <span class="dv">0</span>; <span class="co">//偽。</span>
+a % <span class="dv">3</span> == <span class="dv">0</span> || b % <span class="dv">3</span> == <span class="dv">0</span>; <span class="co">//真 </span></code></pre></div>
+<p>これらを使えると、プログラムをすっきりと書くことができるようになります。</p>
+<h3 id="練習問題-2">練習問題</h3>
+<ul>
+<li>2で割れるが、3で割れない数字かどうかを判定するプログラムを作成しなさい</li>
+</ul>
+<h2 id="breakcontinue">break,continue</h2>
+<p>break文とcontinue文というものについて学んでいきましょう。</p>
+<h3 id="break">break</h3>
+<p>breakとは、英語で切断するという意味です。その名の通り、ループから抜け出すのに使います。while文の最初の方でやった「0が入力されたら終了するプログラム」を思い出してみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> a = <span class="dv">1</span>;
+    <span class="cf">while</span>(a){
+        printf(<span class="st">&quot;0を入力すると終了します。:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>このプログラムを、break文を使って書き換えるとこうなります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> a = <span class="dv">1</span>;
+    <span class="co">// 1だから基本は無限ループになってしまうが……</span>
+    <span class="cf">while</span>(<span class="dv">1</span>){
+        printf(<span class="st">&quot;0を入力すると終了します。:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+        <span class="cf">if</span>(a == <span class="dv">0</span>){ <span class="co">//aが0だったときに</span>
+            <span class="cf">break</span>; <span class="co">// ループを抜ける</span>
+        }
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>break文を使うと、そのループを抜けて先にすすむことが出来ます。上のプログラムの場合、aが0だったときにbreak文によって6行目から12行目までのループを抜け、プログラムが終了します。</p>
+<p>ちょっと複雑な例を見せると、こうなります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> count1 = <span class="dv">0</span>;
+    <span class="dt">int</span> count2 = <span class="dv">0</span>;
+    <span class="cf">while</span>(<span class="dv">1</span>){
+        count2 = <span class="dv">0</span>; <span class="co">// 毎回count2を0に</span>
+        <span class="cf">while</span>(<span class="dv">1</span>){
+            count2++;
+            <span class="cf">if</span>(count2 &gt; <span class="dv">10</span>){
+                <span class="cf">break</span>;
+            }
+            printf(<span class="st">&quot;%d,%d&quot;</span>,count1,count2);
+        }
+        count1++;
+        <span class="cf">if</span>(count1 &gt; <span class="dv">10</span>){
+            printf(<span class="st">&quot;終了します</span><span class="sc">\n</span><span class="st">&quot;</span>);
+            <span class="cf">break</span>;
+        }
+    }
+}</code></pre></div>
+<p>ずらーっと数字が出力されて終了したのではないでしょうか。whileが二重になっている場合（これを<strong>二重ループ</strong>と言います）、breakでは1つのループしか抜けることが出来ません。なので、<code>printf(&quot;終了します\n&quot;);</code>の後のbreakで、やっと1つ目のwhile文を抜けることができるのです。</p>
+<p>break文は非常に重宝します。</p>
+<h3 id="continue">continue</h3>
+<p>次はcontinue文です。continue文は、ループ自体を抜けたいわけではないがあとの処理を一度スキップしたいという場合に使います。これもまた具体例を見てみましょう。次のプログラムは、0から9までカウントしていくなかで、2の倍数のときだけ表示しないプログラムです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> i;
+    <span class="cf">for</span>(i = <span class="dv">0</span>;i&lt;<span class="dv">10</span>;i++){
+        <span class="cf">if</span>(i % <span class="dv">2</span> == <span class="dv">0</span>){
+            <span class="cf">continue</span>;
+        }
+        printf(<span class="st">&quot;%d &quot;</span>,i);
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>実行してみると奇数だけが表示されたのではないでしょうか。continue文は、ループの中で後の処理をスキップして次のループに戻るようなものです。ループの中で処理をスキップするときに使います。</p>
+<p>continue文を使う場合、while文とfor文は前に示した形では置き換え不可能になっています。for文内でcontinueを使う場合、incrementは実行されます。ですが、while文でcontinueを使う場合、continue文の前にincrementを実行しておかないと無限ループになってしまいます。これはコードを書いてみるとすぐにわかります。</p>
+<h3 id="練習問題-3">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>ユーザーに数字を入力してもらい、その値が5の倍数のときに終了するようなプログラムをbreak文を使って書きなさい。</li>
+<li>0から20までカウントして、4の倍数以外のときにその数の二乗を表示するプログラムをcontinue文を使って書きなさい。</li>
+</ol>
+<h2 id="switch文">switch文</h2>
+<p>次はswitch文というものを勉強していきます。一番最初にやったプログラムを少し思い出してください。これです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> ans;
+    <span class="dt">int</span> a,b;
+    printf(<span class="st">&quot;1か2を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;ans);
+    <span class="cf">if</span>(ans == <span class="dv">1</span>){
+        printf(<span class="st">&quot;足し算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+        printf(<span class="st">&quot;一つ目の数字を入力してください。:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+        printf(<span class="st">&quot;二つ目の数字を入力してください。:&quot;</span>)
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+        printf(<span class="st">&quot;足し算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a+b);
+    } <span class="cf">else</span> <span class="cf">if</span>(ans == <span class="dv">2</span>){
+        printf(<span class="st">&quot;引き算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+        printf(<span class="st">&quot;一つ目の数字を入力してください。:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+        printf(<span class="st">&quot;二つ目の数字を入力してください。:&quot;</span>)
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+        printf(<span class="st">&quot;引き算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a-b);
+    } <span class="cf">else</span> {
+        printf(<span class="st">&quot;1か2を入力してください。</span><span class="sc">\n</span><span class="st">&quot;</span>)
+    }
+}</code></pre></div>
+<p>さて、このプログラムに乗算と割り算の機能を追加してみましょう。こんな風になりますね。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> ans;
+    <span class="dt">int</span> a,b;
+    printf(<span class="st">&quot;一つ目の数字を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+    printf(<span class="st">&quot;二つ目の数字を入力してください。:&quot;</span>)
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+    printf(<span class="st">&quot;1か2か3か4を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;ans);
+    <span class="cf">if</span>(ans == <span class="dv">1</span>){
+        printf(<span class="st">&quot;足し算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+        printf(<span class="st">&quot;足し算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a+b);
+    } <span class="cf">else</span> <span class="cf">if</span>(ans == <span class="dv">2</span>){
+        printf(<span class="st">&quot;引き算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+        printf(<span class="st">&quot;引き算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a-b);
+    } <span class="cf">else</span> <span class="cf">if</span>(ans == <span class="dv">3</span>){
+        printf(<span class="st">&quot;掛け算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+        printf(<span class="st">&quot;掛け算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a*b);
+    } <span class="cf">else</span> <span class="cf">if</span>(ans == <span class="dv">4</span>){
+        printf(<span class="st">&quot;割り算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+        printf(<span class="st">&quot;割り算の結果は%fです</span><span class="sc">\n</span><span class="st">&quot;</span>,a/b);
+    } <span class="cf">else</span> {
+        printf(<span class="st">&quot;1か2か3か4を入力してください。</span><span class="sc">\n</span><span class="st">&quot;</span>)
+    }
+}</code></pre></div>
+<p>aとbの入力を前の方に持っていくことで、少しはスッキリしましたが、なんだかごちゃっとしていますね。これは、switch文を使って書くとこうなります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> ans;
+    <span class="dt">int</span> a,b;
+    printf(<span class="st">&quot;一つ目の数字を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+    printf(<span class="st">&quot;二つ目の数字を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+    printf(<span class="st">&quot;1か2か3か4を入力してください。:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;ans);
+        <span class="cf">switch</span>(ans){
+        <span class="cf">case</span> <span class="dv">1</span>:
+            printf(<span class="st">&quot;足し算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+            printf(<span class="st">&quot;足し算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a+b);
+            <span class="cf">break</span>;
+        <span class="cf">case</span> <span class="dv">2</span>:
+            printf(<span class="st">&quot;引き算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+            printf(<span class="st">&quot;引き算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a-b);
+            <span class="cf">break</span>;
+        <span class="cf">case</span> <span class="dv">3</span>:
+            printf(<span class="st">&quot;掛け算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+            printf(<span class="st">&quot;掛け算の結果は%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a*b);
+            <span class="cf">break</span>;
+        <span class="cf">case</span> <span class="dv">4</span>:
+            printf(<span class="st">&quot;割り算をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+            printf(<span class="st">&quot;割り算の結果は%fです</span><span class="sc">\n</span><span class="st">&quot;</span>,(<span class="dt">double</span>)a/(<span class="dt">double</span>)b);
+            <span class="cf">break</span>;
+        <span class="cf">default</span>:
+            printf(<span class="st">&quot;1か2か3か4を入力してください。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    }
+}</code></pre></div>
+<p>なんだか見た目がスッキリしていませんか？スッキリしたんです。</p>
+<p>switch文を使うと「この状態ではこの処理を、この状態ではこの処理を」という分岐をシンプルにかけます。if文でももちろん書けるのですが、switch文の方が見やすく、わかりやすいですね。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="cf">switch</span>(value) {
+    <span class="cf">case</span> <span class="dv">1</span>: 
+        <span class="co">//valueが1だったときの処理をここに書く</span>
+        <span class="cf">break</span>;
+    <span class="cf">case</span> <span class="dv">2</span>:
+        <span class="co">// valueが2だったときの処理をここに書く</span>
+        <span class="cf">break</span>;
+    <span class="cf">default</span>:
+        <span class="co">// 上のcaseの中のどの値でもなかったとき(今回でいえば1,2どちらでもなかったときに)の処理をここに書く</span>
+        <span class="cf">break</span>;
+}  </code></pre></div>
+<p>switch文の中は、変数でも式でも構いません。評価された値によってそれぞれのcaseの中に入っていきます。処理の最後にbreakをつけるのをわすれないでください。breakをつけるのを忘れると、その下に書いてある処理が全て実行されてしまいます。面倒ですね。</p>
+<p>switch文は他の文に比べて感覚的に理解しやすいので、雰囲気で理解してもらっても構いません。</p>
+<h3 id="練習問題-4">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>ユーザーに値を入力してもらい、その値が奇数か偶数かを表示するプログラムをswitch文で書きなさい。</li>
+</ol>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>真似するのはやめておきましょう<a href="#fnref1">↩</a></p></li>
+</ol>
+</div> 
+  </article>
+   <p class="footer">&copy; 2017 sh4869 All Rights reserved</p>
+ <link rel="stylesheet" href="https://unpkg.com/tippy.js@1.2.0/dist/tippy.css" />
+ <script src="https://unpkg.com/tippy.js@1.2.0/dist/tippy.min.js"></script>
+ <script>
+ var comments = document.querySelectorAll(".footnoteRef");
+ var i = 0;
+ for(i = 0;i < comments.length;i++){
+     var id = comments[i].href.split("#").pop();
+     var text = document.querySelector("#" + id).innerText.replace("↩","");
+     comments[i].title = text;
+     tippy(comments[i],{
+         arrow: 'small',
+         stickyDuration: 100,
+         distance: 9,
+         size: "small"
+     })
+ }
+ </script> 
+</body>
+
+</html>

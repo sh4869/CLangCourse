@@ -1,0 +1,110 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+html {
+    max-width: 100%;
+}
+
+body {
+    font-family: 'Noto Sans Japanese', sans-serif;
+    max-width: 1200px;
+    font-size: 17px;
+    margin: 0 auto;
+    padding: 1em 0 3em 0;
+}
+
+
+article.body {
+    width: 100%;
+    margin: 0 auto;
+}
+
+h1.title {
+    text-align: center;
+    font-size: 36px;
+}
+
+h1:not(.title) {
+    font-size: 32px;
+    border: 1px solid gray;
+    text-indent: 1em;
+    color: white;
+    background-color: #000000;
+}
+
+h2 {
+    text-indent: 0.5em;
+}
+
+h3 {
+    text-decoration: underline;
+    text-indent: 0.5em;
+}
+
+p {
+    text-indent: 1em;
+}
+
+.figure {
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 0.6em;
+    max-width: 100%;
+}
+
+.figure img {
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin: 2px;
+    padding: 5px;
+    max-width:75%;
+    max-height: 75%;
+}
+
+.figure p {
+    text-decoration: underline;
+}
+
+
+.menu {
+    border-bottom: 0.5px solid gray;
+}
+
+.pure-menu-item {
+    height: inherit;
+}
+
+.footer {
+    text-align: center;
+}
+
+.custom-restricted-width {
+    display: inline-block;
+}
+.pure-menu-horizontal ul li:hover > ul {
+    display: list-item;
+    left: auto;
+    visibility: visible;
+}
+
+pre {
+    font-size: 14px;
+}
+
+code > span.co {
+    font-style: normal;
+}
+
+#TOC {
+    padding: 1em;
+}
+
+@media only screen and (max-width: 600px) {
+    body{
+        width: 90%;
+    }
+    h1:not(.title){
+        text-indent: 0em;
+    }
+    h1,h2 {
+        text-indent: 0em;
+    }
+}

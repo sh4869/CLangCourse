@@ -1,0 +1,271 @@
+<!DOCTYPE>
+<html >
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0" name="viewport">
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" /> 
+        <title>Hello-World・変数</title>
+  <style type="text/css">
+    code {
+      white-space: pre;
+    }
+  </style>
+        <style type="text/css">
+      div.sourceCode { overflow-x: auto; }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+        margin: 0; padding: 0; vertical-align: baseline; border: none; }
+      table.sourceCode { width: 100%; line-height: 100%; }
+      td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+      td.sourceCode { padding-left: 5px; }
+      code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code > span.dt { color: #902000; } /* DataType */
+      code > span.dv { color: #40a070; } /* DecVal */
+      code > span.bn { color: #40a070; } /* BaseN */
+      code > span.fl { color: #40a070; } /* Float */
+      code > span.ch { color: #4070a0; } /* Char */
+      code > span.st { color: #4070a0; } /* String */
+      code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code > span.ot { color: #007020; } /* Other */
+      code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code > span.fu { color: #06287e; } /* Function */
+      code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      code > span.cn { color: #880000; } /* Constant */
+      code > span.sc { color: #4070a0; } /* SpecialChar */
+      code > span.vs { color: #4070a0; } /* VerbatimString */
+      code > span.ss { color: #bb6688; } /* SpecialString */
+      code > span.im { } /* Import */
+      code > span.va { color: #19177c; } /* Variable */
+      code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code > span.op { color: #666666; } /* Operator */
+      code > span.bu { } /* BuiltIn */
+      code > span.ex { } /* Extension */
+      code > span.pp { color: #bc7a00; } /* Preprocessor */
+      code > span.at { color: #7d9029; } /* Attribute */
+      code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"> 
+      <link rel="stylesheet" href="github.css" type="text/css" /> 
+      <link rel="stylesheet" href="user.css" type="text/css" /> 
+     
+</head>
+
+<body>
+  <div class="pure-menu pure-menu-horizontal menu custom-restricted-width">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="1.html" class="pure-menu-link">No.1</a></li>
+        <li class="pure-menu-item"><a href="2.html" class="pure-menu-link">No.2</a></li>
+        <li class="pure-menu-item"><a href="3.html" class="pure-menu-link">No.3</a></li>
+        <li class="pure-menu-item"><a href="4.html" class="pure-menu-link">No.4</a></li>
+        <li class="pure-menu-item"><a href="5.html" class="pure-menu-link">No.5</a></li>
+    </ul>
+</div> 
+      <div id="header">
+    <h1 class="title">Hello-World・変数</h1>
+              </div>
+      <article class="body"> 
+<h1 id="hello-world変数">Hello-World・変数</h1>
+<h2 id="はじめに">はじめに</h2>
+<p>この講座では基本的なC言語の知識を習得します。</p>
+<p>また、このテキストを作成している人はプログラミング経験者ではありますが教育に関しては素人です。わかりづらいところなどあったらフィードバックしてもらえると助かります。</p>
+<p>ではプログラミング講座に早速入っていく前に、この講座の概要を説明しましょう。</p>
+<h2 id="講座概要">講座概要</h2>
+<p>先述しましたとおり、この講座はロボットを作っていくために必要な「 <strong>C言語プログラミングの知識</strong> 」を習得するためのものです。</p>
+<h3 id="この講座で習得するもの習得しないもの">この講座で習得するもの・習得しないもの</h3>
+<p>この講座で身につけてほしいものは以下のような技能です。</p>
+<ul>
+<li>C言語の基本的な知識</li>
+<li>最低限のアルゴリズム</li>
+<li>ロボットのプログラミングをするときに必要な考え方</li>
+</ul>
+<p>以下のようなものは <strong>身につかない</strong> と思ってください。</p>
+<ul>
+<li>C言語を使ったPC上で動くソフトウェアの開発技能</li>
+<li>C言語の詳しい仕様</li>
+</ul>
+<p>もちろんこの講座で学習したことはC言語でソフトウェアを作ることに役立ちますが、実際にソフトウェアを作っていく上ではその他の知識も必要になります。その部分を埋めることはこのテキストでは行いませんので、ご了承ください<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。</p>
+<h3 id="この講座の対象者">この講座の対象者</h3>
+<p>この講座は<strong>今までプログラミングに一切触れたことがない人</strong>を対象にして作られています。今まで少しでもプログラミングをやったことがある人にとっては少しつまらない説明になってしまう可能性があります。そういうときは、資料を先に読み進めたり、資料が全て理解出来たのであれば練習問題を終わらせたことを先輩に見せたあと他の好きな作業をしてもらっていて構いません。もちろん迷惑にならなければ、ですが。</p>
+<h3 id="講座の方針">講座の方針</h3>
+<p>この講座は毎回次のような形で進めていきます。</p>
+<ol style="list-style-type: decimal">
+<li>説明を聞く</li>
+<li>簡単な例で手を動かしてみる</li>
+<li>練習問題を解く</li>
+</ol>
+<p>練習問題がきちんと理解できれば、その回の内容は理解できるように作っています。自分が内容を理解しているかどうかの補助に利用してください。</p>
+<h2 id="環境構築">環境構築</h2>
+<p>さて、プログラミングを早速学んでいこうと思ってもプログラムを書いて動かせる場所がなければどうしようもありません。その環境を今から作っていきます。</p>
+<h3 id="wandbox">wandbox</h3>
+<p>今回の講座の中でC言語を実行するためのソフトウェアをインストールしてもらうのは時間の都合上厳しいものがあると判断しました。そこで、今回はプログラムをWebブラウザ上で実行できるサイト、<a href="https://wandbox.org">wandbox.org</a>を利用してもらう形になります。</p>
+<p>もちろん、自分でプログラミングを勉強している人で、すでにC言語を実行できる環境が手元にあるという方はそちらを使ってもらって構いません。</p>
+<h4 id="wandboxへのアクセス">Wandboxへのアクセス</h4>
+<p>まずお好きなブラウザを開きます。私は<a href="https://www.google.co.jp/chrome/browser/desktop/index.html">Google Chrome</a>と<a href="https://www.mozilla.org/ja/firefox/new/">Firefox</a>をおすすめします。</p>
+<p>そうしたら、<a href="http://wandbox.org">wandbox.org</a>にアクセスしてください。</p>
+<div class="figure">
+<img src="https://i.gyazo.com/96f2cc5f14d0d58793394756d2a10e33.gif" alt="ツールバーにwandbox.orgと打ち込もう" />
+<p class="caption">ツールバーにwandbox.orgと打ち込もう</p>
+</div>
+<h4 id="言語選択">言語選択</h4>
+<p>そうすると、左上に「wandbox」と書かれたツールバーがあるWebサイトにアクセスできたでしょう。そうしたら、まずプログラミング言語の選択をします。</p>
+<p>皆さんはこれからC言語を学びますから、C言語を選択してください。ツールバーの下にあるボタンをクリックして、右側のLanguagesから「C」を選択します。そうすると、横にズラッと「gcc~」と書かれた選択肢が並ぶでしょう。とりあえず一番上を選択してください<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。</p>
+<div class="figure">
+<img src="https://i.gyazo.com/069fed0b48960a5e323ef8128079c355.gif" alt="C言語を選択する様子" />
+<p class="caption">C言語を選択する様子</p>
+</div>
+<p>ここで少し用語の説明をはさみます。<strong>gcc</strong>というのは、コンパイラの名前です。コンパイラは、みなさんが書いたプログラムを翻訳して、実行できるファイル<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>に変換してくれるものです。プログラムはプログラムのままでは意味がありません。みなさんが書いたプログラム(ソースコードとも言います)を、コンパイラが翻訳して実行ファイル(これをバイナリと言ったりします)に変換することで、初めて実行することができます。</p>
+<p>gccのあとについている数字は、コンパイラのバージョンを指します。これが大きければ大きいほど、新しくなり、機能が追加されています。とりあえず今回は講習ですので、一番新しいバージョンを選んでもらえば問題ないです。</p>
+<blockquote>
+<p>ちなみにclangというのも同じくC言語のコンパイラです。C言語には複数のコンパイラがあります。</p>
+</blockquote>
+<h4 id="テンプレート読み込み-実行">テンプレート読み込み &amp; 実行</h4>
+<p>言語まで選択できたら、テンプレートを読み込んで実行してみましょう。言語の選択ボタンの近くの、「Load template」というボタンを押してください。そうすると、中央に表示されているプログラムが変更されるはずです。その後に「Run (or Ctrl+Enter)」と書いてあるボタンを押してください。プログラムを実行することができます。</p>
+<div class="figure">
+<img src="https://i.gyazo.com/6ec42dd2ebca3be42095e506bf47b6a6.gif" alt="テンプレートを読み込んで実行" />
+<p class="caption">テンプレートを読み込んで実行</p>
+</div>
+<h2 id="helloworld">Hello,World</h2>
+<p>環境をセットアップできたでしょうか。そうしたら、だれもが最初に書くプログラムを書いてみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  printf(<span class="st">&quot;Hello,World!&quot;</span>);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>これを書いたら、実行してみてください。画面上にHello,World!と表示されたのではないでしょうか。これが皆さんの最初のプログラムです。やったね。「Hello,World」という言葉はプログラミングの世界で使われるちょっとした掛け声みたいなものです。この言葉自体に深い意味はありません。 さて、このプログラムを読んでみましょう。よくわからないところばかりですね。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">printf(<span class="st">&quot;Hello,World!&quot;</span>);</code></pre></div>
+<p>この行だけならなんとなくわかるでしょうか？printfという文字を書いて、その後のカッコにダブルクオーテーション(<strong>&quot;</strong>)で囲われた文字を入れればそれが表示されるのかな、と想像できます。</p>
+<p>実際にそうなるか試してみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  printf(<span class="st">&quot;Hello,World!&quot;</span>);
+  printf(<span class="st">&quot;Hello!&quot;</span>);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>先程のプログラムにもう一行表示して実行してみてください。Hello,World!Hello!と表示されたのではないでしょうか。それぞれの文字を変えて見てください。</p>
+<p>ここでprintfは<strong>関数</strong>と呼ばれるものになります。詳しい解説は第4章に行いますが、数学の関数(例えばy=2x+3)のように、渡した値(これを<strong>引数</strong>と言います)に応じて何か返してくれるものだと考えてください。<code>printf(&quot;Hello,World!&quot;);</code> は、<code>&quot;Hello,World!&quot;</code>という引数を渡すとその引数をそのまま画面に表示してくれる関数となります。</p>
+<p>とりあえず関数がよくわからないーという人は、「<code>printf(&quot;Hello&quot;);</code>と書くとHelloと表示され、<code>printf(&quot;World&quot;);</code>と書くとWorldと表示される。」と憶えてしまってください。</p>
+<p><code>printf(&quot;Hello,World&quot;);</code>という部分がなにをしているのかはわかりました。ではあとの部分はなんなのでしょうか？それを今説明しようとすると、皆さんがとても大変な思いをすることになってしまうので、今はとりあえずそういうものが必要なんだと思ってください(これを俗におまじないといいます)。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="co">// ここから↓</span>
+<span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+<span class="co">// ここまでおまじない</span>
+  <span class="co">// ここに色々書いていく</span>
+<span class="co">// ここから↓</span>
+  <span class="cf">return</span> <span class="dv">0</span>;
+}
+<span class="co">// ここもおまじない</span></code></pre></div>
+<p>これからは新しい説明があるまで、基本上のプログラムの『<code>//ここに色々書いていく</code>』と書かれてる部分を書き換えていく形になります。『<code>//</code>』は<strong>コメント</strong>を意味します。『<code>//</code>』と最初にかくとその行はコメントとなり、無視されます。プログラムを書く上で、説明を書いたりするときに便利です。</p>
+<p>あと、文章のあとにいちいち『<code>;</code>』がついていることに気がついたでしょうか。これは文の区切れ目を意味します<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>。</p>
+<h3 id="まとめ">まとめ</h3>
+<ul>
+<li><code>printf</code>という関数を使うと文字を表示することができる。</li>
+<li><code>//</code>と最初にかくとその行はコメントとなりプログラム中で無視される</li>
+</ul>
+<h2 id="変数型演算">変数・型・演算</h2>
+<p>Hello,World!はプログラミングを勉強する人が最初にやる儀式のようなものでした。ここからは少しだけ目的を持ってプログラムを勉強して見ましょう。</p>
+<p>具体的なイメージはともかくとして、簡単な計算プログラムを作ることを考えてみましょう。例えば、3の6乗をぱっと計算してくれるような。階乗をぱっと計算してくれるような。そういうのが出来たらいいですね。</p>
+<p>まずどんなプログラムを書くにも必要になる<strong>変数</strong>について学んでいきます。下のプログラムをコピー&amp;ペーストしてください。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> num;
+  num = <span class="dv">0</span>;
+  printf(<span class="st">&quot;numは%dです&quot;</span>,num);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>実際に実行してみてください。「numは0です」とだけ表示されてプログラムが終了したのではないでしょうか。では早速プログラムの中身を見てみましょう。</p>
+<h3 id="変数の概要変数宣言">変数の概要・変数宣言</h3>
+<p><code>int num;</code>と書いてあります。これはどういう意味なのでしょうか？この文章は、「int型の<code>num</code>という変数を宣言します」という意味です。なるほど、なんもわからないですね。もうちょっと簡単に説明しましょう。</p>
+<p>プログラムを書いていくと、あるデータを保存しておきたい、という場面があります。ロボットで言えば、「このセンサーから読み取った値を後でプログラム中で使いたい」というような感じです。読み取られた値を使って、例えばモーターをどのようなスピードで動かすかを決める場面があるというのは想像できるでしょうか。この値を保存し、ある固有の名前をつけるものが<strong>変数</strong>です。変数は値を入れることができる入れ物です。</p>
+<p>では型とはなんでしょうか。これは次回もうちょっと詳しく説明しますが、簡単に言うと「変数にどのような種類の値が入るかを決めるもの」です。int型の変数には整数のデータしか入りません<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>。どうして型があるのか、ということを説明するのはとても難しいのですが、データの種類の区別をつけるためだと思ってください。</p>
+<p>もう一度説明すると、<code>int num;</code>という文章は「int型の（つまり整数が入る）numという名前の変数を宣言する」という意味です。宣言するというのは、「こういう名前の変数を使います！」ということを示すという意味です。わかってもらえたでしょうか？</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> x; <span class="co">//int型のxという値を宣言</span>
+<span class="dt">int</span> y,z; <span class="co">//int型のy,zという値を宣言</span></code></pre></div>
+<h3 id="変数への代入">変数への代入</h3>
+<p>わかったと仮定して、次の行を見てみましょう。<code>num = 0;</code>という文があります。これは「numという変数に0を代入する」という意味になります。「numという変数に」の部分はわかりやすいですが、「0を代入する」という文章の意味は少し難しいです。</p>
+<p>変数は値を入れることができる入れ物だという話を先程しました。代入というのは、実際にその箱の中に値をいれることを指します。この場合、<code>num</code>という入れ物に<code>0</code>という値を入れているということです。</p>
+<p>さきほど宣言しただけでは、<code>num</code>にはなんの値も入っていませんでした<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>。そこに0という数字を<strong>代入</strong>することで、numは0が格納された変数となります。</p>
+<p><code>=</code>を見ると数学の等式を思い出してしまいがちですが、C言語では等しいという意味ではなく、<code>=</code>の右側にある値を<code>=</code>の左側の変数に代入する、という意味になります。<code>=</code>の右側には他の変数や数字を直接指定することが出来ます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">a = <span class="dv">0</span>; <span class="co">// aに0を代入</span>
+b = <span class="dv">3</span>; <span class="co">// bに3を代入</span>
+c = a; <span class="co">// cにaの値を代入</span>
+<span class="dv">0</span> = <span class="dv">2</span>; <span class="co">// これはできない。エラーになります。</span></code></pre></div>
+<h3 id="変数の表示">変数の表示</h3>
+<p>numの値を表示させているのが<code>printf(&quot;numは%dです&quot;,num);</code>の部分です。Hello,Worldのプログラムで使った<code>printf</code>関数とは違う部分があります。カッコの中がダブルクオーテーションで囲まれた文字だけではなく、その後に<code>,</code>があり、<code>num</code>があります。<code>,</code>は関数において複数の引数を指定するときに使います。ではどうしてさきほどまで1つの引数しか渡していなかったprintf関数で、なぜ2つの引数を指定しているのでしょうか。これを詳しく説明するととても大変なので、簡単に説明します。</p>
+<p>printfに渡す文字列中で<code>%d</code>を含めると、そこに値を指定して表示することができるようになります。<code>numは%dです</code>の中には値を指定する<code>%d</code>が1つだけありますから、1つだけ表示したい値を渡してあげればよいというわけです。これが例えば、<code>numは%dです。繰り返します。numは%dです</code>という文章であった場合は、2つ値を指定してあげる必要があります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> num = <span class="dv">0</span>;
+printf(<span class="st">&quot;numは%dです&quot;</span>,num); <span class="co">// =&gt; 「numは0です」と表示される</span>
+printf(<span class="st">&quot;numは%dです、繰り返します、numは%dです&quot;</span>,num,num); <span class="co">// =&gt; 「numは0です、繰り返します、numは0です」と表示される</span></code></pre></div>
+<p>大体わかってもらえたでしょうか。<code>int num = 0;</code>の<code>0</code>を好きな数字に変えてみてください。表示される数字が変わります。</p>
+<p>もう1つ大切なことを教えます。下のプログラムをコピーしてください。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> num;
+  num = <span class="dv">0</span>;
+  num = <span class="dv">2</span>;
+  printf(<span class="st">&quot;numは%dです&quot;</span>,num);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>さて、実行してみると何が表示されたでしょうか。「numは2です」と表示されたのではないのでしょうか。<strong>変数は1つの値しか持てません</strong>。変数に新しく数字を代入した場合、その変数がどんな値を持っていたにせよ、変数は新しく代入された値を持ちます。過去の値を持つことは出来ませんから、注意してください。</p>
+<h3 id="練習問題">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li><code>var</code>という名前の変数を宣言して、その変数にすきな数字を代入して表示するプログラムを書いてください。</li>
+</ol>
+<blockquote>
+<p>ヒント</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="co">// ここにプログラムを書く</span>
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<h3 id="まとめ-1">まとめ</h3>
+<ul>
+<li>プログラム中には「値を持つための入れ物」の変数という仕組みがある</li>
+<li>変数を使うためには、<strong>宣言</strong>する必要がある</li>
+<li>変数に値を入れるためには、<strong>代入</strong>を行う必要がある。</li>
+<li><code>printf</code>で特殊な文字列を使うことで、変数の中身や数字を表示することができる</li>
+</ul>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>といっても、そんなに心配することはないです。<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>動画が小さくて見づらい場合は、動画を右クリックし「動画を別タブで開く」などをクリックしてください<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Windowsで言えば.exeファイルです<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>プログラムを書き始めたばかりの人が多く躓く場所として、このセミコロンの書き忘れが存在します。プログラムは正しいはずなのに動かない、というときは必ずセミコロンが抜けている行がないか確認してください。ただ、かならず全ての行につけるわけではないのでそこは注意してください。<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>ここを正確に説明しようとすると本当に厳しいので、こういう表現になってしまいます。ごめんなさい。気になった人は次回のテキストを見るか、自分で調べるかなどしてください<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>正確には初期値と言われる値が入っています<a href="#fnref6">↩</a></p></li>
+</ol>
+</div> 
+  </article>
+   <p class="footer">&copy; 2017 sh4869 All Rights reserved</p>
+ <link rel="stylesheet" href="https://unpkg.com/tippy.js@1.2.0/dist/tippy.css" />
+ <script src="https://unpkg.com/tippy.js@1.2.0/dist/tippy.min.js"></script>
+ <script>
+ var comments = document.querySelectorAll(".footnoteRef");
+ var i = 0;
+ for(i = 0;i < comments.length;i++){
+     var id = comments[i].href.split("#").pop();
+     var text = document.querySelector("#" + id).innerText.replace("↩","");
+     comments[i].title = text;
+     tippy(comments[i],{
+         arrow: 'small',
+         stickyDuration: 100,
+         distance: 9,
+         size: "small"
+     })
+ }
+ </script> 
+</body>
+
+</html>

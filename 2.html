@@ -1,0 +1,463 @@
+<!DOCTYPE>
+<html >
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0" name="viewport">
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" /> 
+        <title>標準入力・条件分岐</title>
+  <style type="text/css">
+    code {
+      white-space: pre;
+    }
+  </style>
+        <style type="text/css">
+      div.sourceCode { overflow-x: auto; }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+        margin: 0; padding: 0; vertical-align: baseline; border: none; }
+      table.sourceCode { width: 100%; line-height: 100%; }
+      td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+      td.sourceCode { padding-left: 5px; }
+      code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code > span.dt { color: #902000; } /* DataType */
+      code > span.dv { color: #40a070; } /* DecVal */
+      code > span.bn { color: #40a070; } /* BaseN */
+      code > span.fl { color: #40a070; } /* Float */
+      code > span.ch { color: #4070a0; } /* Char */
+      code > span.st { color: #4070a0; } /* String */
+      code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code > span.ot { color: #007020; } /* Other */
+      code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code > span.fu { color: #06287e; } /* Function */
+      code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      code > span.cn { color: #880000; } /* Constant */
+      code > span.sc { color: #4070a0; } /* SpecialChar */
+      code > span.vs { color: #4070a0; } /* VerbatimString */
+      code > span.ss { color: #bb6688; } /* SpecialString */
+      code > span.im { } /* Import */
+      code > span.va { color: #19177c; } /* Variable */
+      code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code > span.op { color: #666666; } /* Operator */
+      code > span.bu { } /* BuiltIn */
+      code > span.ex { } /* Extension */
+      code > span.pp { color: #bc7a00; } /* Preprocessor */
+      code > span.at { color: #7d9029; } /* Attribute */
+      code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"> 
+      <link rel="stylesheet" href="github.css" type="text/css" /> 
+      <link rel="stylesheet" href="user.css" type="text/css" /> 
+     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>  
+</head>
+
+<body>
+  <div class="pure-menu pure-menu-horizontal menu custom-restricted-width">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="1.html" class="pure-menu-link">No.1</a></li>
+        <li class="pure-menu-item"><a href="2.html" class="pure-menu-link">No.2</a></li>
+        <li class="pure-menu-item"><a href="3.html" class="pure-menu-link">No.3</a></li>
+        <li class="pure-menu-item"><a href="4.html" class="pure-menu-link">No.4</a></li>
+        <li class="pure-menu-item"><a href="5.html" class="pure-menu-link">No.5</a></li>
+    </ul>
+</div> 
+      <div id="header">
+    <h1 class="title">標準入力・条件分岐</h1>
+              </div>
+      <article class="body"> 
+<h1 id="標準入力条件分岐">標準入力・条件分岐</h1>
+<h2 id="はじめに">はじめに</h2>
+<p>前回は環境導入、Hello-World!、変数等を勉強しました。わからないところがあったら、先輩に聞いたり、自分で資料を読み直したりしてみてください。</p>
+<h2 id="演算">演算</h2>
+<p>さて、変数によって値を保存できることがわかったのはよかったのですが、今のままだと絶対に計算プログラムは作ることが出来ません。なぜなら、計算の方法を知らないからです。当たり前ですね。では実際に計算を行う簡単なプログラムを見てみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> x = <span class="dv">2</span>; <span class="co">// これはint x; x= 2;を一行にまとめたものです。</span>
+  <span class="dt">int</span> y = <span class="dv">3</span>;
+  <span class="dt">int</span> ans = x + y;
+  printf(<span class="st">&quot;x+yは%dです&quot;</span>,ans);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>このプログラムを実行してみてください。「x+yは5です」と表示されたのではないのでしょうか。</p>
+<p><code>int ans = x + y;</code>の部分は、コメントにもあるように<code>int ans;</code>と<code>ans = x + y;</code>をまとめたものです。ここで大切になるのは<code>ans = x + y;</code>の部分になります。前回学んだ通り<code>=</code>は左側の変数に右側の値を代入するものです。右側に<code>x+y</code>のような<strong>式</strong>がある場合、左側の変数には式の評価結果が代入されます。少し難しいですが、例を見て理解してください。式の評価は数学の式と同じように行われます。少しだけいつも使う記号とは違いますが。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> x = <span class="dv">0</span>;
+<span class="dt">int</span> y = <span class="dv">2</span>;
+<span class="dt">int</span> z = <span class="dv">3</span>;
+x + y; <span class="co">// この式はx + yを意味するので、0 + 2で評価結果は2</span>
+x + z; <span class="co">// この式はx + zを意味するので、0 + 3で評価結果は3</span>
+z * y; <span class="co">// この式はz × yを意味するので、2 × 3で評価結果は6</span></code></pre></div>
+<p><code>+</code>や<code>*</code>といった演算の内容を指示する記号を<strong>演算子</strong>といいます。演算子には優先順位というものがあり、優先度の高い演算子から先に処理されていきます。実は<code>=</code>も演算子なのです。<code>=</code>は代入演算子といいます。代入演算子の優先度は<code>+</code>や<code>*</code>といった計算に使われる演算子の優先度よりも高く設定されています。そのため、<code>ans = x + y;</code>という式はまず<code>ans</code>に<code>x+y</code>を代入しよう、という風に解釈されます。その後<code>x+y</code>で<code>+</code>の演算が行われ、最終的にx+yの値である5がansに代入されるわけです。</p>
+<div class="figure">
+<img src="https://i.gyazo.com/9548bd6e486f24b89ca7d612f01bc7b1.png" alt="演算子について" style="width:30.0%" />
+<p class="caption">演算子について</p>
+</div>
+<p>このあたりは正直難しいので、正確に理解出来なくても構いません。ここの練習問題やサンプルプログラムなどを見て、「こうすればこうなるんだな」というのを感覚で憶えてもらえばそれで問題ないです。</p>
+<h3 id="演算子の種類">演算子の種類</h3>
+<p>計算でよく使う演算子をまとめておきます。</p>
+<ul>
+<li><code>+</code> : 足し算です。</li>
+<li><code>-</code> : 引き算です。左の値から右の値を引いたものが結果として評価されます。</li>
+<li><code>*</code> : 掛け算です。両辺の値をかけたものが結果として評価されます。</li>
+<li><code>/</code> : 割り算です。</li>
+<li><code>%</code> : あまりを求めます。左の値を右の値で割り、そのあまりを出します。例えば、<code>3 % 2;</code>は1と評価されますし、<code>4 % 2;</code>は0と評価されます。</li>
+</ul>
+<p>その他の演算子等に関しては<a href="https://ja.wikibooks.org/wiki/C%E8%A8%80%E8%AA%9E/%E6%BC%94%E7%AE%97%E5%AD%90%E3%81%A8%E5%BC%8F">こちら</a>のサイトがよくまとまっています。もしわからなくなったらプログラミングが詳しそうな先輩に質問してください。</p>
+<h3 id="練習問題">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>変数を2つ用意し、それぞれ3と2を代入しなさい。3の代入された変数から2の代入された変数を<code>-</code>を用いて引いた結果を他の変数に代入して表示しなさい。</li>
+<li>変数を3つ使い、120と20について、それぞれ足し算の結果、引き算の結果、掛け算の結果、割り算の結果を表示しなさい。</li>
+</ol>
+<h3 id="まとめ">まとめ</h3>
+<ul>
+<li>プログラム中では演算子を使って計算をすることができる</li>
+</ul>
+<h2 id="型">型</h2>
+<p>今まではずっと整数の計算をしてきました。ですが、少数が必要になる時もありますよね。少数を<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>扱うことになると、int型では表現出来ません。その場合、別の型を使う必要があります。</p>
+<h3 id="floatdouble">float,double</h3>
+<p>少数を扱う変数を使う場合、その変数の型は<strong>float型</strong>または<strong>double型</strong>にする必要があります。float型とdouble型の違いは、その変数の表現できる値の大きさの範囲です<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">型名</th>
+<th align="left">範囲</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">float</td>
+<td align="left"><span class="math display">\[\pm 10^{-38}～10^{38}\]</span></td>
+</tr>
+<tr class="even">
+<td align="left">double</td>
+<td align="left"><span class="math display">\[\pm 10^{-308}～10^{308}\]</span></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">float</span> x = <span class="fl">3.5</span>;
+  <span class="dt">float</span> y = <span class="fl">2.4</span>;
+  <span class="dt">float</span> ans = x + y;
+  printf(<span class="st">&quot;x+yは%fです&quot;</span>,ans);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>変数の型とその値が変わったこと以外は特に変化がないように見えます。ただ、<code>%d</code>だった部分が<code>%f</code>に変わっています。これは与えられた値を整数で表示するか、少数で表示するかの違いです。値をどのようなフォーマットで表示したいかによって、この文字列は<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>変更する必要があります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">float</span> x = <span class="fl">3.5</span>;
+  <span class="dt">float</span> y = <span class="fl">2.4</span>;
+  <span class="dt">float</span> ans = x + y;
+  printf(<span class="st">&quot;x+yは%fです</span><span class="sc">\n</span><span class="st">&quot;</span>,ans);
+  printf(<span class="st">&quot;x+yは%dです&quot;</span>,ans);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>上のプログラムを実行してみてください。一行目は正常に表示されますが、二行目はおかしな値になるのではないのでしょうか<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>。 このように、そのプログラム上で変数をどのようなフォーマットで表示したいかをちゃんと考える必要があります。フォーマットの表を次に示しておきます<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>。</p>
+<table>
+<thead>
+<tr class="header">
+<th>表示したい変数の種類</th>
+<th>フォーマット指定子</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>整数(int)</td>
+<td>%d</td>
+</tr>
+<tr class="even">
+<td>少数(double,float)</td>
+<td>%f</td>
+</tr>
+<tr class="odd">
+<td>文字<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></td>
+<td>%c</td>
+</tr>
+<tr class="even">
+<td>文字列</td>
+<td>%s</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="co">// フォーマット指定子を使う例</span>
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> a = <span class="dv">0</span>;
+  <span class="dt">float</span> b = <span class="fl">0.3</span>;
+  printf(<span class="st">&quot;a=%d,b=%f&quot;</span>,a,b);
+}
+<span class="co">// =&gt; a=0,b=0.3</span></code></pre></div>
+<p>ちなみに7行目にある<code>\n</code>は改行を意味します。printfの中の文字列にこれを入れると、表示されたときにその<code>\n</code>のある場所で改行されます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">printf(<span class="st">&quot;a</span><span class="sc">\n\n</span><span class="st">b&quot;</span>); 
+<span class="co">// a</span>
+<span class="co">// </span>
+<span class="co">// b</span></code></pre></div>
+<h3 id="練習問題-1">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>4.3と2.6を足し合わせて表示するプログラムを作成してください。</li>
+</ol>
+<h3 id="まとめ-1">まとめ</h3>
+<ul>
+<li>少数などを扱うためのfloat型などがある。</li>
+<li>フォーマット指定子を利用することで、適切なフォーマットで表示することができる。</li>
+<li><code>\n</code>を利用すると改行することができる。</li>
+</ul>
+<h2 id="標準入力">標準入力</h2>
+<p>今までのプログラムでは、計算したい値をプログラム中に入力していました。しかし計算機を作ると、数字をあとから指定したいですよね。</p>
+<p>プログラムを使う人(ここからはユーザーといいます)に、計算に利用する値を入力してもらいたい場合、<strong>標準入力</strong>を使います。</p>
+<h3 id="scanf関数">scanf関数</h3>
+<p>ユーザーに数字を入力してもらうプログラムは以下のようになります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> a;
+  printf(<span class="st">&quot;aの値を入力してください:&quot;</span>);
+  scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+  printf(<span class="st">&quot;aは%dです</span><span class="sc">\n</span><span class="st">&quot;</span>,a);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>実際にこのプログラムを実行してみてください。aの値を入力してください、という文字が表示されて画面が止まります。そこで、好きな数字を半角で入力してください。</p>
+<p>たとえば3を入力すると、「aは3です」という表示がされます。4であれば「aは4です」と言った風に、自分の入力した値がaに代入されていることがわかります。</p>
+<ul>
+<li>TODO : wandboxを利用している人に標準入力の使い方を説明する</li>
+</ul>
+<p><strong>scanf</strong>関数は、ユーザーからの入力を受けつけて、入力された値を指定した変数に代入する関数です。</p>
+<blockquote>
+<p><code>scanf(&quot;欲しい変数のフォーマット指定子&quot;,&amp;変数名)</code></p>
+</blockquote>
+<p>下はscanfを使った例です。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> a;
+scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+<span class="dt">float</span> b;
+scanf(<span class="st">&quot;%f&quot;</span>,&amp;b);
+<span class="dt">double</span> d;
+scanf(<span class="st">&quot;%lf&quot;</span>,&amp;d);</code></pre></div>
+<p>「どうして変数名の前に&amp;をつけるの？」という疑問を持った方がいるでしょう。現状私がここまで教えてきた知識だけでは&amp;<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>が必要な理由を適切に説明することはできません。ポインタという項目を学習する際に、詳しく解説しますので、ここではとりあえず覚えてください。</p>
+<h3 id="練習問題-2">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>ユーザーに整数を入力してもらい、その数字の3倍を表示するプログラムを書いてみましょう。</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> num;
+  <span class="co">// ここにユーザーからの入力を受け付ける処理を書く</span>
+  <span class="co">// ここにその数字を三倍した値を書くプログラムを書く</span>
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<h3 id="まとめ-2">まとめ</h3>
+<ul>
+<li>ユーザーからの入力をプログラム中で使いたい場合、scanf関数を使う。</li>
+</ul>
+<h2 id="条件分岐">条件分岐</h2>
+<p>さて、これでユーザーからの数字を受け入れるプログラムを書くことが出来ました。これで計算機に近いことはできそうです。例えば2つの数字を入力してもらい、その足し合わせた結果を求めるプログラムはこんなふうになります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> a,b;
+  printf(<span class="st">&quot;一つ目の数字を入力して下さい:&quot;</span>);
+  scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+  printf(<span class="st">&quot;二つ目の数字を入力して下さい:&quot;</span>);
+  scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+  printf(<span class="st">&quot;二つの数字の足し合わせた結果は%dとなります。</span><span class="sc">\n</span><span class="st">&quot;</span>,a+b);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>上のプログラムは理解出来ているでしょうか？もしよくわからないところがあったら、今までのテキストを読み直したり練習問題をやってみたりしてください。</p>
+<p>では、入力された2つの値を引いた結果を求めるプログラムを書くにはどのようにしたらよいでしょうか。上のプログラムを数文字変えるだけですみますね。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> a,b;
+  printf(<span class="st">&quot;一つ目の数字を入力して下さい:&quot;</span>);
+  scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+  printf(<span class="st">&quot;二つ目の数字を入力して下さい:&quot;</span>);
+  scanf(<span class="st">&quot;%d&quot;</span>,&amp;b);
+  printf(<span class="st">&quot;aからbを引いた結果は%dとなります。</span><span class="sc">\n</span><span class="st">&quot;</span>,a-b);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>簡単ですね。さて、ここで「1つのプログラム上で、足し算と引き算どちらもできるようにしたい」と思いませんか？最初に足し算と引き算、どちらを行うかを選べるとより計算機に近づくと思いませんか？</p>
+<p>このようにある要素（今回の場合はユーザーの選択）によって処理を分岐するために必要なのが、<strong>条件分岐</strong>となります。</p>
+<p>条件分岐は、プログラムを書く上で本当に大切な要素です。これがないと、プログラムを書くことは出来ません。今までよりすこしだけ難しくなりますが、頑張ってついてきてください。</p>
+<h3 id="if文">if文</h3>
+<p>まずみなさんには、<strong>if文</strong>というものを学んでもらいます。if文は、与えられた条件によって処理を分岐することが出来ます。</p>
+<blockquote>
+<p><code>if(条件式) 処理</code></p>
+</blockquote>
+<p>与えられた条件式の値が真であれば、その後に書かれた処理を実行します。偽であれば実行しません。</p>
+<p>ここで、真は<strong>0でない数字</strong>、偽は<strong>0</strong>を指します。</p>
+<p>これだけ言われてもよくわからないでしょうから、例を見てみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="cf">if</span>(<span class="dv">1</span>) printf(<span class="st">&quot;1は真なのでこれは表示される</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  <span class="cf">if</span>(-<span class="dv">1</span>) printf(<span class="st">&quot;-1も真なので、コレも表示される</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  <span class="cf">if</span>(<span class="dv">0</span>) printf(<span class="st">&quot;0は偽なので、これは表示されない。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  <span class="cf">if</span>(<span class="dv">6</span>-<span class="dv">5</span>){
+    printf(<span class="st">&quot;6-5は1なので真である。よってこれは表示される</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    printf(<span class="st">&quot;こんな風にifのあとを{}で囲むと、複数の処理をかくことができる</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  }
+}</code></pre></div>
+<p>大体わかったでしょうか？このif文を使えば、いろいろなことができるようになりそうですね！では例えば、ユーザーから入力された数字が42ではない時だけ、メッセージを表示する様なプログラムをつくってみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> a;
+  scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+  <span class="cf">if</span>(a - <span class="dv">42</span>){
+    printf(<span class="st">&quot;世界の答えではない</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  }
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>プログラムの意味は理解してもらえたでしょうか<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>？流れは簡単です。aにscanfで値を代入します。その値が42だったときはifの中の式の値が0になるためなにも行われず、42ではなかった場合、if文の中の値が0以外になるため真となり、文字が表示されるようになっています。</p>
+<p>しかし、これってちょっと困りますよね。入力された値が42のとき<strong>だけ</strong>、何かを表示するというプログラムを書けません。そんなときに利用するのが、<code>==</code>演算子です。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> a;
+  scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+  <span class="cf">if</span>(a == <span class="dv">42</span>){
+    printf(<span class="st">&quot;世界の答えだ</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  }
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p><code>==</code>演算子を使うと、左の値(<strong>左辺値</strong>とも言います)と右の値(<strong>右辺値</strong>)が等しいときは式の値は1、そうでないときは0となります。aが42であれば、<code>a == 42</code>は1となるのでprintfが実行されますし、aが42でなければ0となるのでprintfは実行されません。</p>
+<p><code>==</code>演算子は代入演算子(<code>=</code>)と非常に間違えやすいので注意してください<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>。</p>
+<p><code>==</code>は<strong>等値演算子</strong>と言われるものです。等値演算子には2つの種類があります。</p>
+<table>
+<thead>
+<tr class="header">
+<th>演算記号</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>左辺値と右辺値が等しければ1になる</td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>左辺値と右辺値が等しくなければ1になる</td>
+</tr>
+</tbody>
+</table>
+<p>では早速、サンプルのプログラムを見てみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> a;
+  printf(<span class="st">&quot;3の倍数かどうかを判定するプログラムです</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  printf(<span class="st">&quot;3の倍数であれば「3の倍数です」と表示します。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+  <span class="cf">if</span>(a % <span class="dv">3</span> == <span class="dv">0</span>){
+    printf(<span class="st">&quot;%dは3の倍数です</span><span class="sc">\n</span><span class="st">&quot;</span>,a);
+  }
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p><code>==</code>の演算子としての優先度は<code>%</code>、<code>*</code>、<code>+</code>、<code>-</code>、<code>/</code>などより高く設定されていますから、上の<code>a % 3 == 0</code>は、<code>a % 3</code>の結果が0と等しいか、という意味になります。3の倍数であれば3で割ったあまりは0になるため、上のプログラムが成立します。</p>
+<h3 id="elseelse-if">else,else if</h3>
+<p>さきほどのサンプルプログラムを発展させて、「3の倍数であるときは『3の倍数です』と表示させ、そうでないときは『3の倍数ではありません』と表示する」プログラムを作ってみましょう。こういったプログラムを書くときに必要なのが<code>else</code>文です。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="cf">if</span>(条件式) 条件式が真だったときの処理;
+<span class="cf">else</span> 条件式が偽のときの処理;</code></pre></div>
+<p>else文はif文と合わせて使います。if文の条件式が偽だったときにその後の処理文が実行されるようになっています。</p>
+<p>else文の中でさらに条件式を指定したい場合は、else if文を使います。</p>
+<pre><code>if(条件式A) 条件式Aが真だったときの処理; 
+else if(条件式B) 条件式Aが偽かつ条件式Bが真だったときの処理;</code></pre>
+<p>こちらもちょっとわかりづらいですから、サンプルを見てみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="cf">if</span>(<span class="dv">0</span>){
+    printf(<span class="st">&quot;ここは条件式が偽なので実行されない。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  } <span class="cf">else</span> {
+    printf(<span class="st">&quot;条件式が偽なのでここは実行される</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  }
+  <span class="cf">if</span>(<span class="dv">1</span>){
+    printf(<span class="st">&quot;条件式が真なのでここは実行される</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  } <span class="cf">else</span> {
+    printf(<span class="st">&quot;条件式が真なのでここは実行されない</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  }
+  <span class="cf">if</span>(<span class="dv">0</span>){
+    printf(<span class="st">&quot;ここは条件式が偽なので実行されない。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  } <span class="cf">else</span> <span class="cf">if</span>(<span class="dv">3</span>*<span class="dv">4</span> == <span class="dv">12</span>){
+    printf(<span class="st">&quot;一つ目の条件式が偽、かつ二つ目の条件式が真なのでここは実行される</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  }
+
+  <span class="cf">if</span>(<span class="dv">0</span>){
+    printf(<span class="st">&quot;ここは条件式が偽なので実行されない。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  } <span class="cf">else</span> <span class="cf">if</span>(<span class="dv">3</span>*<span class="dv">4</span> != <span class="dv">12</span>){
+    printf(<span class="st">&quot;二つ目の条件式が偽なので実行されない。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  } <span class="cf">else</span> {
+    printf(<span class="st">&quot;一つ目と二つ目の条件式がどちらも偽なので実行される.</span><span class="sc">\n</span><span class="st">&quot;</span>)
+  }
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>大体理解できたでしょうか？このelse文を使えば、こんな風にプログラムを書けます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="dt">int</span> a;
+  printf(<span class="st">&quot;3の倍数かどうかを判定するプログラムです</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  printf(<span class="st">&quot;3の倍数であれば「3の倍数です」と表示し、そうでなければ「3の倍数ではありません」と表示します。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+  scanf(<span class="st">&quot;%d&quot;</span>,&amp;a);
+  <span class="cf">if</span>(a % <span class="dv">3</span> == <span class="dv">0</span>){
+    printf(<span class="st">&quot;%dは3の倍数です</span><span class="sc">\n</span><span class="st">&quot;</span>,a);
+  } <span class="cf">else</span> {
+    printf(<span class="st">&quot;%dは3の倍数ではありません。&quot;</span>,a);
+  }
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>このような条件分岐は、プログラムを書く上でとても大切になります。頑張って覚えましょう。</p>
+<h3 id="練習問題-3">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>上の足し算と引き算のプログラムを利用して、足し算と引き算好きな方を計算できるようなプログラムを書いてみましょう。</li>
+</ol>
+<blockquote>
+<p>ヒント: 足し算・引き算に使う変数とは別に、ユーザーからの入力を受け付ける変数を用意します。scanf関数を使って入力してもらった数字をそこに代入し、その値が1であったら足し算を、2であったら引き算を行うようなプログラムを書いてみましょう。</p>
+</blockquote>
+<h3 id="まとめ-3">まとめ</h3>
+<ul>
+<li>何かしらの条件によってプログラムの動作をかえることを条件分岐という。</li>
+<li>条件分岐にはif文やelse文などが使われる。</li>
+</ul>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>数学的に言えば実数を<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>環境によっては下の表と違う範囲であるときがあります。型の範囲に依存するプログラムを記述したい場合はプログラミングができそうな先輩に聞いてみてください<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>正確にはフォーマット指定子といいます<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>環境によって実際に表示される文字列は違います<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>文字と文字列に関してはこの講座では扱いません。<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>文字・文字列についてはこの講座では扱いません<a href="#fnref6">↩</a></p></li>
+<li id="fn7"><p>アンパサンドと読みます<a href="#fnref7">↩</a></p></li>
+<li id="fn8"><p>このテキストの意味を知りたかったら、暇なときに42という言葉をGoogle検索してみてください<a href="#fnref8">↩</a></p></li>
+<li id="fn9"><p>プログラムが上手く動かないということがあったら、まず代入演算子と<code>==</code>演算子を間違えていないかを確認するべきと言われるほどです<a href="#fnref9">↩</a></p></li>
+</ol>
+</div> 
+  </article>
+   <p class="footer">&copy; 2017 sh4869 All Rights reserved</p>
+ <link rel="stylesheet" href="https://unpkg.com/tippy.js@1.2.0/dist/tippy.css" />
+ <script src="https://unpkg.com/tippy.js@1.2.0/dist/tippy.min.js"></script>
+ <script>
+ var comments = document.querySelectorAll(".footnoteRef");
+ var i = 0;
+ for(i = 0;i < comments.length;i++){
+     var id = comments[i].href.split("#").pop();
+     var text = document.querySelector("#" + id).innerText.replace("↩","");
+     comments[i].title = text;
+     tippy(comments[i],{
+         arrow: 'small',
+         stickyDuration: 100,
+         distance: 9,
+         size: "small"
+     })
+ }
+ </script> 
+</body>
+
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE>
+<html >
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0" name="viewport">
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" /> 
+        <title>ポインタ・配列・構造体</title>
+  <style type="text/css">
+    code {
+      white-space: pre;
+    }
+  </style>
+        <style type="text/css">
+      div.sourceCode { overflow-x: auto; }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+        margin: 0; padding: 0; vertical-align: baseline; border: none; }
+      table.sourceCode { width: 100%; line-height: 100%; }
+      td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+      td.sourceCode { padding-left: 5px; }
+      code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code > span.dt { color: #902000; } /* DataType */
+      code > span.dv { color: #40a070; } /* DecVal */
+      code > span.bn { color: #40a070; } /* BaseN */
+      code > span.fl { color: #40a070; } /* Float */
+      code > span.ch { color: #4070a0; } /* Char */
+      code > span.st { color: #4070a0; } /* String */
+      code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code > span.ot { color: #007020; } /* Other */
+      code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code > span.fu { color: #06287e; } /* Function */
+      code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      code > span.cn { color: #880000; } /* Constant */
+      code > span.sc { color: #4070a0; } /* SpecialChar */
+      code > span.vs { color: #4070a0; } /* VerbatimString */
+      code > span.ss { color: #bb6688; } /* SpecialString */
+      code > span.im { } /* Import */
+      code > span.va { color: #19177c; } /* Variable */
+      code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code > span.op { color: #666666; } /* Operator */
+      code > span.bu { } /* BuiltIn */
+      code > span.ex { } /* Extension */
+      code > span.pp { color: #bc7a00; } /* Preprocessor */
+      code > span.at { color: #7d9029; } /* Attribute */
+      code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"> 
+      <link rel="stylesheet" href="github.css" type="text/css" /> 
+      <link rel="stylesheet" href="user.css" type="text/css" /> 
+     
+</head>
+
+<body>
+  <div class="pure-menu pure-menu-horizontal menu custom-restricted-width">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="1.html" class="pure-menu-link">No.1</a></li>
+        <li class="pure-menu-item"><a href="2.html" class="pure-menu-link">No.2</a></li>
+        <li class="pure-menu-item"><a href="3.html" class="pure-menu-link">No.3</a></li>
+        <li class="pure-menu-item"><a href="4.html" class="pure-menu-link">No.4</a></li>
+        <li class="pure-menu-item"><a href="5.html" class="pure-menu-link">No.5</a></li>
+    </ul>
+</div> 
+      <div id="header">
+    <h1 class="title">ポインタ・配列・構造体</h1>
+              </div>
+      <article class="body"> 
+<h1 id="ポインタ配列構造体">ポインタ・配列・構造体</h1>
+<h2 id="はじめに">はじめに</h2>
+<p>前回はマクロと関数の勉強をしました。とくに関数の抽象と具体の部分は重要になります。よく読み返しておいてください。</p>
+<h2 id="ポインタ">ポインタ</h2>
+<blockquote>
+<p>この章は練習問題が細かく作られています。問題文を読んですぐに何をすればいいかわかった人は飛ばしてしまって構いません。確認のためのものなので。</p>
+</blockquote>
+<h3 id="ポインタとはなんなのか">ポインタとはなんなのか</h3>
+<p>今回はポインタというものを学んで行きます。ポインタは、C言語初心者がつまづきやすく、難しい分野だと言われています。といっても、「とても難しいものを学ぶんだ」と身構えてしまうとかえって疲れてしまいますから、最初は簡単な話から始めていきましょう。</p>
+<p>みなさんが使っているコンピュータには、メモリと言われるものが載っています。「CPUはCore i3、メモリは4GB」とか言われるときのメモリです。ノートパソコンなら最近のものなら4GBから16GB、スマートフォンなら2GBとかぐらいあるのではないでしょうか。ノートパソコンのメモリは多ければ多いほど快適なので、追加できる余裕がある人は追加しておくと幸せになります。</p>
+<p>さて、今までプログラム上で使ってきた変数について考えてみましょう。あれってどこに保存されているんでしょうか？答えは「<strong>メモリ</strong>」です。メモリの上に変数が保存されて、それをCPUが取りに行ったりしてくれます<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。</p>
+<!-- textlint-disable -->
+<p>ここで、メモリがどんなふうになっているかを見てみましょう。こんなプログラムを考えます<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。</p>
+<!-- textlint-enable -->
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">char</span> x = <span class="dv">2500</span>,y = <span class="dv">3204</span>,z = <span class="dv">0</span>,w = <span class="dv">600</span>;
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>そのとき、メモリはこんな感じになります。</p>
+<div class="figure">
+<img src="https://i.gyazo.com/7adf4a5f6d07d1aa0ebd95ca852493b3.png" alt="メモリ図" />
+<p class="caption">メモリ図</p>
+</div>
+<p>メモリは現実の世界と同じで、住所があり、その中に値が(現実で言えば実際の建物が)あります。CPUはそのアドレスを使って値を得て、実際に演算などをすることが可能なわけですね。今回は<code>x</code>の値がアドレス<code>100</code>の場所に、<code>y</code>の値がアドレス<code>101</code>に、<code>z</code>の値がアドレス<code>102</code>に、<code>w</code>の値がアドレス<code>103</code>に入っています<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>。</p>
+<p>では、この変数のアドレスをプログラム上で取得するためにはどうすればいいのでしょうか。</p>
+<p><strong><code>&amp;</code>演算子</strong>を使うと、その変数のアドレスを取得する事ができます。<code>&amp;</code>演算子をアドレス演算子と言ったりします。<code>scanf</code>関数のとき使いましたね。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> a;
+&amp;a; <span class="co">// =&gt; aの値が格納されているアドレスを得る</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">char</span> x = <span class="dv">2500</span>,y = <span class="dv">3204</span>,z = <span class="dv">0</span>,w = <span class="dv">600</span>;
+    <span class="co">// アドレスを表示する際、printfでは%pを利用する</span>
+    printf(<span class="st">&quot;%p&quot;</span>,&amp;x);  <span class="co">// =&gt; xのアドレスが表示される</span>
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>ある変数に<code>-</code>をつけると<code>その変数の値×-1</code>になるのと同じように、ある変数に<code>&amp;</code>をつけると<code>その変数のアドレス</code>になるわけです。</p>
+<p>このとき<code>&amp;a</code>の型は<strong>int * 型</strong>となり、「<strong>int型へのポイント型</strong>」と読みます。また、<code>&amp;a</code>の値を一般に「<strong>aへのポインタ</strong>」といいます。「変数aのポインタ」と言われたら、「変数aのアドレス」のことを指していると考えてください。この講習資料では、ここから先では<code>&amp;a</code>を「aのポインタ」と呼ぶことにします。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> y;
+&amp;y; <span class="co">// =&gt; 「yへのポインタ」、「yのポインタ」と表現する</span></code></pre></div>
+<h4 id="練習問題">練習問題</h4>
+<ul>
+<li>int型，double型，char型の変数をそれぞれ1つずつ宣言し，それぞれの変数のポインタを画面に表示するプログラムを作りなさい．</li>
+</ul>
+<h3 id="ポインタ型">ポインタ型</h3>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> a;
+    &amp;a;
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>さきほどの文章の中で、<code>&amp;a</code>はint型へのポインタ型であるというお話をしました。実は、C言語ではポインタ型の変数を宣言することができるのです。<code>t</code>型へのポインタ型の<code>x</code>という変数を宣言する場合、次のように記述します。</p>
+<ul>
+<li><code class="sourceCode c">t * x;</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> * x; <span class="co">//int型へのポインタ型の変数 x</span>
+<span class="dt">double</span> * y; <span class="co">//double 型へのポインタ型の変数 y</span></code></pre></div>
+<p>ちなみにポインタ型の変数を複数個宣言する場合は、それぞれに<code>*</code>をつける必要があります。間違えやすいので注意してください。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> *a,*b; <span class="co">//int型へのポイント型の変数a,b</span>
+<span class="dt">int</span> *c,d; <span class="co">//int型へのポイント型の変数c,int型の変数d</span></code></pre></div>
+<p>ポインタ型の変数はこんなふうに使うことができます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main (<span class="dt">void</span>) {
+  <span class="dt">int</span> x;
+  <span class="dt">double</span> y;
+  <span class="dt">int</span> *px;
+  <span class="dt">double</span> *py;
+  px = &amp;x;
+  py = &amp;y;
+  printf (<span class="st">&quot;The address of x is %p.</span><span class="sc">\n</span><span class="st">&quot;</span>, px);
+  printf (<span class="st">&quot;The address of y is %p.</span><span class="sc">\n</span><span class="st">&quot;</span>, py);
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>ポインタ型の変数だから、<code>&amp;</code>演算子によって得られたポインタ型の値を代入することができるわけですね。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="co">// ある変数からそのポインタを取得することは`&amp;`演算子を使って可能</span>
+<span class="dt">int</span> a;
+printf(<span class="st">&quot;%p</span><span class="sc">\n</span><span class="st">&quot;</span>,&amp;a);</code></pre></div>
+<p>ある変数から、その変数のポインタを取得するためには<code>&amp;</code>演算子を使えばいいということがわかりました。その反対として、あるアドレスからそのアドレスに格納されている値を取得することも可能です。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> a = <span class="dv">0</span>;
+<span class="dt">int</span> * p;
+p = &amp;a;
+<span class="co">// ここでアドレス(ポインタ)pに格納されている値を取ることができる</span>
+printf(<span class="st">&quot;value of %p is %d&quot;</span>,p,*p);</code></pre></div>
+<p>演算子<code>*</code>を利用すると、そのアドレスに格納されている値を取得する事ができます。あるアドレスが格納された変数xに対し、そのアドレスの値を取得するためには次のように記述します。</p>
+<blockquote>
+<p><code>* x;</code></p>
+</blockquote>
+<p>このプログラムを実行すると、「the value of (なにかアドレス) = 0」と表示されるはずです。pにはaのアドレスが格納されていますから、そのアドレスに対して<code>*</code>をつけると、その中の値0が取得されるわけです。</p>
+<h4 id="練習問題-1">練習問題</h4>
+<ul>
+<li>double型の変数<code>a</code>とdouble型へのポインタ型の変数<code>p</code>をそれぞれ宣言し、<code>a</code>のポインタを<code>p</code>に代入してから、<code>a</code>の値を<code>p</code>を使って表示しなさい</li>
+</ul>
+<h3 id="ポインタから値を変更する">ポインタから値を変更する</h3>
+<p>アドレスから元の値を変更することもできます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> a = <span class="dv">0</span>;
+    <span class="dt">int</span> * p;
+    p = &amp;a;
+    *p = <span class="dv">5</span>;
+    printf (<span class="st">&quot;the value of a = %d&quot;</span>,a);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>このプログラムを実行すると、「the value of a = 5」と表示されます。pは現在aのアドレスが格納されているわけですから、<code>*p</code>に新たな数字を代入するということは、アドレス<code>p</code>に格納されている値を変えるということになります。<strong>アドレスを使えば変数の値を書き換えることが可能ということです</strong>。</p>
+<div class="figure">
+<img src="https://i.gyazo.com/6b30836b3e3ec3750a1575941badfacd.png" alt="ポインタを使って値を直接いじる" />
+<p class="caption">ポインタを使って値を直接いじる</p>
+</div>
+<h4 id="練習問題-2">練習問題</h4>
+<ul>
+<li>double型の変数<code>b</code>の値をdouble型へのポインタ型<code>p</code>から変更するプログラムを書きましょう</li>
+</ul>
+<h3 id="関数でのポインタの利用">関数でのポインタの利用</h3>
+<p>ここで、皆さんに<code>scanf</code>のことを思い出してもらいましょう。<code>scanf</code>で値を代入したい変数を渡すときに<code>&amp;</code>演算子をつけて渡していた理由がわかりましたか？</p>
+<p>関数の中で、呼び出し元に渡すことができるのは返り値だけです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> function(<span class="dt">int</span> a,<span class="dt">int</span> b){
+    <span class="cf">return</span> a+b;
+}
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> a = <span class="dv">0</span>,b = <span class="dv">3</span>,result;
+    result = function(a,b);
+    printf(<span class="st">&quot;result is %d&quot;</span>,result);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>関数の中で複数の値を返すことはできません。しかし、複数の値を同時に変更したいという場合はあります。そんなときポインタを利用すれば、引数を通じて複数の値を変更することが可能です。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="dt">void</span> add_2_to_all_value(<span class="dt">int</span> *a,<span class="dt">int</span> *b){
+    *a += <span class="dv">2</span>;
+    *b += <span class="dv">2</span>;
+    <span class="cf">return</span>;
+}
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> a = <span class="dv">0</span>;
+    <span class="dt">int</span> b = <span class="dv">3</span>;
+    add_2_to_all_value(&amp;a,&amp;b);
+    printf(<span class="st">&quot;%d,%d&quot;</span>,a,b);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>上のプログラムを実行すると、「2,5」と表示されます。<code>add_2_to_all_value</code>関数の中で、ポインタによって渡された値にそれぞれ2を足しているからです。返り値はないので関数の型は<code>void</code>となっています。</p>
+<p>ポインタを使うと複数の値をいじれるだけでなく，場合によって違う型を返す必要がある処理も書くことができます。<code>scanf</code>などは最初に渡すフォーマット指定子によって値が変わるので、普通の返り値を返すタイプの関数としては実装できないのです。これも、ポインタを使ってあげると実装することが出来ます。今までscanfで値を代入する変数に<code>&amp;a</code>などと<code>&amp;</code>をつけていたのは、ポインタを渡していたからですね<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>。</p>
+<h4 id="練習問題-3">練習問題</h4>
+<ul>
+<li>int型へのポインタ型の引数を3つ受け取って，その3の中で最も大きな値をすべての引数の値に代入するプログラムを書きなさい</li>
+</ul>
+<h2 id="配列">配列</h2>
+<p>次に、配列というものを学んでいきます。配列というのは複数のデータを処理するときに便利なものです。</p>
+<p>ユーザーに3つの値を入力してもらい、その平均値を出すプログラムを考えてみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> num1,num2,num3
+    printf(<span class="st">&quot;3つの値を入力してください</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    printf(<span class="st">&quot;1つ目:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;num1);
+    printf(<span class="st">&quot;2つ目:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;num2);
+    printf(<span class="st">&quot;3つ目:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;num3);
+    printf(<span class="st">&quot;3つの値の平均値は%fです。</span><span class="sc">\n</span><span class="st">&quot;</span>,(num1+num2+num3)/<span class="dv">3</span>);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>ちょっと煩わしいですね。この処理は配列を使うと次のようになります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> nums[<span class="dv">3</span>];
+    <span class="dt">int</span> sum = <span class="dv">0</span>;
+    printf(<span class="st">&quot;3つの値を入力してください</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>;i&lt;<span class="dv">3</span>;i++){
+        printf(<span class="st">&quot;%dつめ:&quot;</span>,i+<span class="dv">1</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;nums[i]);
+    }
+    printf(<span class="st">&quot;3つの値の平均値は%fです。</span><span class="sc">\n</span><span class="st">&quot;</span>,(nums[<span class="dv">0</span>] + nums[<span class="dv">1</span>] + nums[<span class="dv">2</span>])/<span class="dv">3</span>);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>配列は、複数のデータをまとめて扱うときに使うものです。例えば、クラスメイトの身長・体重の平均を取るとか。コンピュータは大量のデータを処理することに長けています。実際に大量のデータを扱ったプログラムを記述したい場合は、配列を使って記述していきます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;math.h&gt;</span>
+<span class="pp">#define N 8</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> data[N] = {<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>};
+    <span class="dt">int</span> sum=<span class="dv">0</span>,sum2=<span class="dv">0</span>,i;
+    <span class="dt">double</span> ave,dev;
+    <span class="cf">for</span>(i=<span class="dv">0</span>;i&lt;N;i++){
+        sum += data[i];
+        sum2 += data[i] * data[i];
+    }
+    ave = sum / N;
+    dev = sqrt(sum2/N - ave*ave);
+    printf(<span class="st">&quot;平均:%f,標準偏差:%f</span><span class="sc">\n</span><span class="st">&quot;</span>,ave,dev);
+    <span class="cf">return</span>;
+}</code></pre></div>
+<p>標準偏差と平均を求めるプログラムです<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>。高校時代にやりましたね。覚えていますか？これを例えば8個の変数で実現してみるとどんな感じになるのでしょうか？</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;math.h&gt;</span>
+<span class="pp">#define N 8</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> data1 = <span class="dv">10</span>,data2 = <span class="dv">20</span>,data3 = <span class="dv">30</span>,data4 = <span class="dv">40</span>,data5 = <span class="dv">50</span>,data6 = <span class="dv">60</span>,data7 = <span class="dv">70</span>,data8 = <span class="dv">80</span>;
+    <span class="dt">int</span> sum = <span class="dv">0</span>;sum2 = <span class="dv">0</span>;i;
+    <span class="dt">double</span> ave,dev;
+    sum = data1 + data2 + data3 + data4 + data5 + data6 + data7 + data8;
+    sum2 = (data1*data1) + (data2*data2) + (data3*data3) + (data4*data4) + (data5*data5) + (data6*data6) + (data7*data7) + (data8*data8);
+    ave = sum / N;
+    dev = sqrt(sum2/N - ave*ave);
+    printf(<span class="st">&quot;平均:%f,標準偏差:%f</span><span class="sc">\n</span><span class="st">&quot;</span>,ave,dev);
+    <span class="cf">return</span>;
+}</code></pre></div>
+<p>これはひどい。ひどいですね。読みたくもない。上の例から分かる通り、配列を使うとデータを統一的に処理することが簡単になるわけです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">型名 変数名[配列個数];</code></pre></div>
+<p>配列の基本的な宣言方法です。ただ、配列は様々な表現方法があります。基本形を覚えておけば問題ないですが、全く知らないと他の人が記述したコードを読む際に困ることがあるので一応理解はしておいてください。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> int_data[<span class="dv">100</span>]; <span class="co">// 100個分のint型の配列</span>
+<span class="dt">double</span> double_data[<span class="dv">100</span>]; <span class="co">// 100個分のdoublle型の配列</span>
+<span class="dt">int</span> small_data[<span class="dv">3</span>] = {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>};  <span class="co">// 値の指定も可能</span>
+<span class="dt">int</span> nankano_data[] = {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>}; <span class="co">// 値の指定をする場合は要素数を省略することも可能</span>
+<span class="dt">int</span> zero[<span class="dv">100</span>] = {<span class="dv">0</span>}; <span class="co">// 要素数を指定し、それより小さい場合しか初期化しなかった場合、他の要素は0で埋められる</span></code></pre></div>
+<p>ちょっといろいろあってわかりづらいですね。覚えきれないな、と感じるであれば基本形だけ覚えて使ってください。他のものが出てきたら、調べなおせばよいことです。</p>
+<p>データにアクセスするときは添字を使います。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> data[<span class="dv">3</span>] = {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>};
+data[<span class="dv">0</span>]; <span class="co">// =&gt; 1</span>
+data[<span class="dv">1</span>]; <span class="co">// =&gt; 2</span>
+data[<span class="dv">2</span>]; <span class="co">// =&gt; 3</span>
+data[<span class="dv">3</span>]; <span class="co">// =&gt; エラーとなる</span></code></pre></div>
+<p>上の例を見るとわかりますが、<strong>配列の添字は0から始まります</strong>。これは大変間違えやすいので注意してください。上の例のプログラムを見ればわかりますが、for文を使って配列にアクセスするときも0からアクセスしていますね。配列の要素数が5であれば、実際にアクセスできる要素は0~4ということです。</p>
+<h3 id="練習問題-4">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>以下に書かれている配列のなかから、一番大きな値と一番小さな値を探して表示するプログラムを作りなさい</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> data[<span class="dv">20</span>] = {<span class="dv">10</span>,<span class="dv">30</span>,<span class="dv">20</span>,<span class="dv">43</span>,<span class="dv">5323</span>,<span class="dv">34232</span>,<span class="dv">4023</span>,<span class="dv">12</span>,<span class="dv">432412</span>,<span class="dv">11</span>,<span class="dv">43</span>,<span class="dv">23</span>,<span class="dv">12</span>,<span class="dv">432</span>,<span class="dv">9</span>,<span class="dv">22</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>};</code></pre></div>
+<h2 id="構造体">構造体</h2>
+<h3 id="構造体構文">構造体構文</h3>
+<p>いよいよこの講習最後の項目となりました。ここでは、構造体について学んでいきます。</p>
+<p>構造体は複数のデータをまとめて1つにしたいとき使います。構造体はどういったデータ構造を持つのかの宣言をしてから実際に使います。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="co">//  - 構造体の宣言</span>
+<span class="co">// struct 構造体の名前  {</span>
+<span class="co">// ここにメンバを書く</span>
+<span class="co">// }</span>
+
+<span class="kw">struct</span> people {
+    <span class="dt">double</span> weight;
+    <span class="dt">double</span> height;
+};
+
+
+<span class="co">// 構造体の変数宣言</span>
+<span class="co">// struct 構造体名 変数名;</span>
+<span class="co">// このときこの変数を「構造体名型の変数」と言ったりする</span>
+<span class="co">// この場合はpeople型のstudentという名前の変数を宣言してることになる</span>
+<span class="kw">struct</span> people student;
+
+<span class="co">// 要素にはドット(.)を使ってアクセスできる</span>
+<span class="co">// その他の扱い方は他の変数と変わらない</span>
+student.height = <span class="fl">172.5</span>;
+student.wegith = <span class="fl">58.2</span>;
+printf(<span class="st">&quot;体重:%f,身長:%f</span><span class="sc">\n</span><span class="st">&quot;</span>,student.weight,student.height);</code></pre></div>
+<p>構造体自体の使い方はなんとなくわかりましたか？ではどんなときに構造体を使うのでしょうか。次のようなプログラムを考えてみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">double</span> height[<span class="dv">10</span>];
+    <span class="dt">double</span> weight[<span class="dv">10</span>];
+    <span class="dt">int</span> count = <span class="dv">10</span>;
+    printf(<span class="st">&quot;今から10人分の身長・体重データを入力してもらいます。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>;i&lt;count;i++){
+        printf(<span class="st">&quot;身長:&quot;</span>);
+        <span class="co">// 配列の値にscanfで値を代入する場合、普通にアクセスするときのものに&amp;をつければよいです</span>
+        scanf(<span class="st">&quot;%lf&quot;</span>,&amp;height[i]); 
+        printf(<span class="st">&quot;体重:&quot;</span>);
+        scanf(<span class="st">&quot;%lf&quot;</span>,&amp;weight[i]);
+    }
+    <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>;i&lt;<span class="dv">10</span>;i++){
+        printf(<span class="st">&quot;%d人目 - 体重: %f,身長 %f</span><span class="sc">\n</span><span class="st">&quot;</span>,i,weight[i],height[i]);
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>10人分の身長・体重を入力してもらい、さらにそれを表示していくプログラムです。これを構造体を使って表現するとこうなります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="kw">struct</span> people {
+    <span class="dt">double</span> weight;
+    <span class="dt">double</span> height;
+}; <span class="co">// ここのセミコロン忘れがちなので気をつけて</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="kw">struct</span> people students[<span class="dv">10</span>];
+    <span class="dt">int</span> count = <span class="dv">10</span>;
+    printf(<span class="st">&quot;今から10人分の身長・体重データを入力してもらいます。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>;i&lt;<span class="dv">10</span>;i++){
+        printf(<span class="st">&quot;身長:&quot;</span>);
+        scanf(<span class="st">&quot;%lf&quot;</span>,&amp;students[i].height);
+        printf(<span class="st">&quot;体重:&quot;</span>);
+        scanf(<span class="st">&quot;%lf&quot;</span>,&amp;students[i].weight);
+    }
+    <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>;i&lt;<span class="dv">10</span>;i++){
+        printf(<span class="st">&quot;%d人目 - 体重: %f,身長 %f</span><span class="sc">\n</span><span class="st">&quot;</span>,i,students[i].weight,students[i].height);
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>少しスッキリしたのではないでしょうか。このように、プログラム中では複数のデータを関連して扱いたいということが多くあります。例えば、キャラクターのデータを1つにまとめたいとか。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="kw">struct</span> chara {
+    <span class="dt">char</span> name[<span class="dv">20</span>]; <span class="co">// char型の配列の話ってしましたっけ？</span>
+    <span class="dt">int</span> hp; <span class="co">// HP</span>
+    <span class="dt">int</span> mp; <span class="co">// MP</span>
+    <span class="dt">int</span> atk; <span class="co">// 攻撃力</span>
+    <span class="dt">double</span> def; <span class="co">// 防御力</span>
+}
+
+<span class="kw">struct</span> chara hero,enemy;</code></pre></div>
+<p>みたいな。こうやってやると、例えば<code>struct chara</code>を2つ受け取ってダメージを計算する関数とかが書けます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> dipslayDamage(<span class="kw">struct</span> chara attcker,<span class="kw">struct</span> chara receiver){
+    printf(<span class="st">&quot;ダメージ:%f</span><span class="sc">\n</span><span class="st">&quot;</span>,attcker.atk / receiver.def);
+    <span class="cf">if</span>(receiver.hp - attcker.atk / receiver.def &lt; <span class="dv">0</span>){
+        printf(<span class="st">&quot;%sは倒れてしまった!&quot;</span>,receiver.name); <span class="co">// %s表記の場所にchar型の配列をそのまま渡してあげるとその文字列が表示されます。詳しい説明はどこかで。</span>
+    }
+}</code></pre></div>
+<p>なるほど、便利そうですね。ピンと来ましたか？（僕の説明が下手というのはありますが）ピンと来ない人は、とりあえずなんとなくで理解しておいてくれればいいです。この構造体は、マイコンの設定等でも利用します。多く目にしているうちに、理解できるようになれるでしょう。</p>
+<h3 id="typedef">typedef</h3>
+<p>ところで、<code>struct chara</code>っていちいち書くの面倒ですよね。長い。そこで便利なのが<code>typedef</code>です。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="kw">struct</span> chara {
+    <span class="dt">char</span> name[<span class="dv">20</span>]; <span class="co">// char型の配列の話ってしましたっけ？</span>
+    <span class="dt">int</span> hp; <span class="co">// HP</span>
+    <span class="dt">int</span> mp; <span class="co">// MP</span>
+    <span class="dt">int</span> atk; <span class="co">// 攻撃力</span>
+    <span class="dt">double</span> def; <span class="co">// 防御力</span>
+}
+<span class="co">// こうすると</span>
+<span class="kw">typedef</span> <span class="kw">struct</span> chara character;
+<span class="co">// こう使えるようになる</span>
+character hero,enemy;</code></pre></div>
+<p><code>typedef</code>はその名前からなんとなく分かる通り、ある型に別の名前をつけることができる機能です。上のコードの場合であれば、<code>struct chara</code>型に<code>character</code>という別の名前をつけてあげたことになります。<code>typedef</code>自体は構造体以外にも使う事ができます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="kw">typedef</span> <span class="dt">int</span> my_int; <span class="co">//なんの意味もないが……</span>
+my_int i = <span class="dv">1</span>;</code></pre></div>
+<p>最初から<code>typedef</code>で別の名前をつけて使いたい場合はこんな書き方もできます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="kw">typedef</span> <span class="kw">struct</span> {
+    <span class="dt">char</span> name[<span class="dv">20</span>]; <span class="co">// char型の配列の話ってしましたっけ？</span>
+    <span class="dt">int</span> hp; <span class="co">// HP</span>
+    <span class="dt">int</span> mp; <span class="co">// MP</span>
+    <span class="dt">int</span> atk; <span class="co">// 攻撃力</span>
+    <span class="dt">double</span> def; <span class="co">// 防御力</span>
+} character;</code></pre></div>
+<p>便利～。</p>
+<h3 id="練習問題-5">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>以下に示す構造体を引数にする関数を自由に作りなさい。関数内でメンバーにアクセスすることを条件とします。引数はいくつとっても構いません。</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="kw">typedef</span> <span class="kw">struct</span> {
+    <span class="dt">char</span> name[<span class="dv">20</span>]; <span class="co">// char型の配列の話ってしましたっけ？</span>
+    <span class="dt">int</span> hp; <span class="co">// HP</span>
+    <span class="dt">int</span> mp; <span class="co">// MP</span>
+    <span class="dt">int</span> atk; <span class="co">// 攻撃力</span>
+    <span class="dt">double</span> def; <span class="co">// 防御力</span>
+} character;</code></pre></div>
+<p>例えば非常にシンプルな関数を考えると、こんなふうになります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> displayHPAndMP(character c){
+    printf(<span class="st">&quot;HP:%d MP:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,c.hp,c.mp);
+}</code></pre></div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>この辺の話が詳しく知りたいのであれば、「コンピュータの構成と設計」という本の上巻を読むといいでしょう。この本さえちゃんと理解していれば組み込みプログラマとして最低限の知識を得ることができます<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>このプログラム上でint型ではなくchar型を利用しているのは，図をより正確にするためです。char型の変数は1バイトであり、メモリのアドレス1つに対して4bitまでのデータが格納できるため、char型の変数を使うとアドレス1つに対して1つの変数の値を格納できるからです。わからなくても問題はありません<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>実際このように保存されるとは限りません。アドレスは環境によって変わります<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>実際のscanfの実装を説明するには皆さんにC言語の知識をもっとつけてもらう必要があるのでやめておきます<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p><code>sqrt</code>は平方根を求める関数です<a href="#fnref5">↩</a></p></li>
+</ol>
+</div> 
+  </article>
+   <p class="footer">&copy; 2017 sh4869 All Rights reserved</p>
+ <link rel="stylesheet" href="https://unpkg.com/tippy.js@1.2.0/dist/tippy.css" />
+ <script src="https://unpkg.com/tippy.js@1.2.0/dist/tippy.min.js"></script>
+ <script>
+ var comments = document.querySelectorAll(".footnoteRef");
+ var i = 0;
+ for(i = 0;i < comments.length;i++){
+     var id = comments[i].href.split("#").pop();
+     var text = document.querySelector("#" + id).innerText.replace("↩","");
+     comments[i].title = text;
+     tippy(comments[i],{
+         arrow: 'small',
+         stickyDuration: 100,
+         distance: 9,
+         size: "small"
+     })
+ }
+ </script> 
+</body>
+
+</html>

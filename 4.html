@@ -1,0 +1,310 @@
+<!DOCTYPE>
+<html >
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0" name="viewport">
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" /> 
+        <title>マクロ・関数</title>
+  <style type="text/css">
+    code {
+      white-space: pre;
+    }
+  </style>
+        <style type="text/css">
+      div.sourceCode { overflow-x: auto; }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+        margin: 0; padding: 0; vertical-align: baseline; border: none; }
+      table.sourceCode { width: 100%; line-height: 100%; }
+      td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+      td.sourceCode { padding-left: 5px; }
+      code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code > span.dt { color: #902000; } /* DataType */
+      code > span.dv { color: #40a070; } /* DecVal */
+      code > span.bn { color: #40a070; } /* BaseN */
+      code > span.fl { color: #40a070; } /* Float */
+      code > span.ch { color: #4070a0; } /* Char */
+      code > span.st { color: #4070a0; } /* String */
+      code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code > span.ot { color: #007020; } /* Other */
+      code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code > span.fu { color: #06287e; } /* Function */
+      code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      code > span.cn { color: #880000; } /* Constant */
+      code > span.sc { color: #4070a0; } /* SpecialChar */
+      code > span.vs { color: #4070a0; } /* VerbatimString */
+      code > span.ss { color: #bb6688; } /* SpecialString */
+      code > span.im { } /* Import */
+      code > span.va { color: #19177c; } /* Variable */
+      code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code > span.op { color: #666666; } /* Operator */
+      code > span.bu { } /* BuiltIn */
+      code > span.ex { } /* Extension */
+      code > span.pp { color: #bc7a00; } /* Preprocessor */
+      code > span.at { color: #7d9029; } /* Attribute */
+      code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"> 
+      <link rel="stylesheet" href="github.css" type="text/css" /> 
+      <link rel="stylesheet" href="user.css" type="text/css" /> 
+     
+</head>
+
+<body>
+  <div class="pure-menu pure-menu-horizontal menu custom-restricted-width">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="1.html" class="pure-menu-link">No.1</a></li>
+        <li class="pure-menu-item"><a href="2.html" class="pure-menu-link">No.2</a></li>
+        <li class="pure-menu-item"><a href="3.html" class="pure-menu-link">No.3</a></li>
+        <li class="pure-menu-item"><a href="4.html" class="pure-menu-link">No.4</a></li>
+        <li class="pure-menu-item"><a href="5.html" class="pure-menu-link">No.5</a></li>
+    </ul>
+</div> 
+      <div id="header">
+    <h1 class="title">マクロ・関数</h1>
+              </div>
+      <article class="body"> 
+<h1 id="マクロ関数">マクロ・関数</h1>
+<h2 id="はじめに">はじめに</h2>
+<p>前回は繰り返しや論理式、break文、switch文について勉強しました。よく確認しておいてください。</p>
+<h2 id="マクロ">マクロ</h2>
+<p>C言語にはマクロという機能があります。予め定義しておくことでプログラム中の特定の文字列を置換することができる機能です。この説明だけではよくわからないとおもうので、ちょっとプログラムで説明してみましょう。</p>
+<p>例えば、円の面積と長さを計算するプログラムを考えましょう。円周率は<code>3.14</code>とします。プログラムとしてはこんな風になるでしょうか。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> radius;
+    printf(<span class="st">&quot;半径を入力してください:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;radius);
+    printf(<span class="st">&quot;円の面積は%fです。</span><span class="sc">\n</span><span class="st">&quot;</span>,radius * radius * <span class="fl">3.14</span>);
+    printf(<span class="st">&quot;円の長さは%fです。</span><span class="sc">\n</span><span class="st">&quot;</span>,radius * <span class="dv">2</span> * <span class="fl">3.14</span>);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>さて、プログラム中に2回も<code>3.14</code>が書かれています。ここで、「円周率は<code>3.141592</code>で計算してください」という指示が出たらどうでしょうか。プログラム中の<code>3.14</code>の部分を、<code>3.141592</code>に書き換えれば良さそうですね。ですが、もっと簡単な方法があります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> radius;
+    <span class="dt">double</span> pi = <span class="fl">3.14</span>;
+    printf(<span class="st">&quot;半径を入力してください:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;radius);
+    printf(<span class="st">&quot;円の面積は%fです。</span><span class="sc">\n</span><span class="st">&quot;</span>,radius * radius * pi);
+    printf(<span class="st">&quot;円の長さは%fです。</span><span class="sc">\n</span><span class="st">&quot;</span>,radius * <span class="dv">2</span> * pi);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>こうすれば、簡単に円周率の値を変えることが出来ますね。とっても便利。ですが、ちょっと考えてみてください。変数piは、円周率を保存することしかしていないわけです。変数が増えると、プログラムは複雑化します。もっと簡単な書き方はないのでしょうか。そんなときに使えるのが、<strong>マクロ</strong>です。</p>
+<p>マクロを使って円周率の計算のプログラムを書き直してみます。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#define PI 3.14</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> radius;
+    printf(<span class="st">&quot;半径を入力してください:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;radius);
+    printf(<span class="st">&quot;円の面積は%fです。</span><span class="sc">\n</span><span class="st">&quot;</span>,radius * radius * PI);
+    printf(<span class="st">&quot;円の長さは%fです。</span><span class="sc">\n</span><span class="st">&quot;</span>,radius * <span class="dv">2</span> * PI);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>どうでしょうか？ちょっとスッキリしたんじゃないでしょうか？二行目の<code>#define PI 3.14</code>に注目してください。これがマクロの定義です。この定義によって、プログラム中の<code>PI</code>はプログラムがコンパイルされるとき、<code>3.14</code>に置き換わります。変数を宣言する必要がなくなるので、便利ですね。</p>
+<blockquote>
+<p><code>#define 置換前の文字列 置換後の文字列</code></p>
+</blockquote>
+<p>マクロを使いこなせるようになると様々なことができるようになります。ただ、それを学ぶのはこの講習の目的ではないので触れないでおきます。気になる人は自分で調べてみてください。 マクロは基本的に全て大文字で定義されますし、みなさんもそうすべきです。なぜならそれが変数なのか、マクロなのかわかりやすいからです。</p>
+<h2 id="関数">関数</h2>
+<p>最初の講習の話を思い出してください。最初の講習のとき、「こことりあえず必要なのだ」という説明をしたことを覚えていますか？</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+  <span class="co">// ここに色々書いていく</span>
+  <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>これです。この節では、説明をしていなかったこの部分がなんなのかということを理解してもらいます。</p>
+<p>さて、プログラミングをしていると、同じ処理をなんども書いてるなと感じるときがありませんか？例えば、次のプログラムを考えてみましょう。「ユーザーに数字を入力してもらう。その数字が2の倍数であるときは、その数字の二乗・三乗をそれぞれ表示する。2の倍数でないときは、もう一度ユーザーに数字を入力してもらう。その数字が3の倍数であれば、その数字の二乗・三乗をそれぞれ表示する。そうでなければ、プログラムを終了する。」ちょっと複雑ですね。フローチャートはこんなふうになります。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> input1,input2;
+    printf(<span class="st">&quot;整数を入力してください:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;input1);
+    <span class="cf">if</span>(input1 % <span class="dv">2</span> == <span class="dv">0</span>){
+        printf(<span class="st">&quot;二乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,input1 * input1);
+        printf(<span class="st">&quot;三乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,input1 * input1 * input1);
+    } <span class="cf">else</span> {
+        printf(<span class="st">&quot;整数を入力してください:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;input2);
+        <span class="cf">if</span>(input2 % <span class="dv">3</span> == <span class="dv">0</span>){
+            printf(<span class="st">&quot;二乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,input2 * input2);
+            printf(<span class="st">&quot;三乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,input2 * input2 * input2);
+        }
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<div class="figure">
+<img src="https://i.gyazo.com/d7f42f4c360a66b4888ed0721f50a983.png" alt="フローチャート" style="width:30.0%" />
+<p class="caption">フローチャート</p>
+</div>
+<p>なんだか長くなってしまいましたね。もしここで、「二乗・三乗をそれぞれ表示する」というのをもっとシンプルにまとめて書くことが出来たら良さそうですね。そんなときに使うのが<strong>関数</strong>です。関数の構文はこのような感じです。</p>
+<blockquote>
+<p><code>返り値の型 関数名(引数) 処理文</code></p>
+</blockquote>
+<p>&quot;返り値&quot;、そして&quot;引数&quot;。わからない言葉が2つも出てきてしまいました。まずは簡単な例を考えてみましょう。数学の関数はどんなものか覚えていますか？<code>y = x*2</code>みたいなやつです。ああいうのって、xにある値を与えると、yが1つに定まりますよね。ここでのxが引数、yが返り値となります。ちょっと例を見ましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> add2(<span class="dt">int</span> x){
+    <span class="cf">return</span> x + <span class="dv">2</span>;
+}</code></pre></div>
+<p>上の<code>add2</code>という関数は、引数xに2を足した値を返す関数です。数学の式でいえば<code>y = x + 2</code>というわけです。</p>
+<p>この関数をプログラム上で呼び出すときは、例えばこうします。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> i = <span class="dv">0</span>;
+<span class="dt">int</span> b = <span class="dv">0</span>;
+i = add2(b); <span class="co">// iは2になる。</span></code></pre></div>
+<p>こんなふうに書いたこと、ありますよね。だってずっと、<code>printf</code>や<code>scanf</code>を使ってきたんですから。<code>add2</code>という関数を実行する場合には、add2に渡したい値をカッコ内に書いてあげればいいわけです。</p>
+<p><code>return</code>文についての説明をします。<code>return</code>文があると、関数は呼び出された時点に戻ります。そしてそれが右辺値として評価されます。少し難しい言い方ですが、上の例を見てください。3行目で<code>add2</code>関数が呼ばれ、return文によって<code>x + 2</code>つまり<code>b + 2</code>が評価されて、<code>i</code>に代入されるわけです。</p>
+<p>引数を省略することも出来ます。数学の関数は必ずしもxが入ってくるわけではないですよね。たとえば、<code>y = 100</code>というのも立派な関数です。このような関数はいかにして表現するのでしょうか？</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> get100(<span class="dt">void</span>){
+    <span class="cf">return</span> <span class="dv">100</span>;
+}</code></pre></div>
+<p>こんな風にすれば、<code>y = 100</code>という関数がC言語上でも表せます。実際にはこんな関数は使いませんが。引数のところにある<code>void</code>は、その関数は引数を指定しないということを明示的にしめすものです。<code>void</code>は書かなくても結構です。</p>
+<p>関数は数学の関数にようなものだけではなく、処理をまとめたいときにも使えます。たとえばこんな風に。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> greeting(){
+    printf(<span class="st">&quot;こんにちは！</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    printf(<span class="st">&quot;これからこのプログラムの説明をします。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+    <span class="co">// 以下適当になんかせつめいが入る</span>
+}</code></pre></div>
+<p><code>greeting</code>関数はプログラムの説明を表示してくれるものです。この関数には返り値がありません。なので、返り値の型を書く部分には返り値がないことをしめす<code>void</code>が書かれています。</p>
+<p>返り値が<code>void</code>な関数の中では、<code>return</code>文はちょっと特殊です。次の関数を見てみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="co">// 15以下の数字が与えられたときに注意喚起を表示するプログラム</span>
+<span class="dt">void</span> print_warn(<span class="dt">int</span> age){
+    <span class="cf">if</span>(age &gt; <span class="dv">15</span>){
+        <span class="cf">return</span>;
+    }
+    printf(<span class="st">&quot;注意!15歳以下には適切でない内容が含まれる可能性があります。</span><span class="sc">\n</span><span class="st">&quot;</span>);
+}</code></pre></div>
+<p>上から四行目の<code>return</code>文では、右辺に値を持っていません。返り値なしの関数では、<code>return</code>文は呼び出し元に戻るという意味を持ちます。上の例のように、関数を途中で終了したい場合にreturn文を使うといいでしょう。</p>
+<p>関数は宣言することで、プログラム上で何度でも使うことができるようになります。関数を使うことは、プログラムをわかりやすく、そして書きやすくするためにとても大切です。実際に上のプログラムを関数を使って書き直してみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="co">// ある整数値を受け取って、その2乗と3乗を表示する関数。</span>
+<span class="co">// 関数名はなにをしてくれるのか適切に書くこと。</span>
+<span class="dt">void</span> print_square_cube(<span class="dt">int</span> num){
+    printf(<span class="st">&quot;二乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,num * num);
+    printf(<span class="st">&quot;三乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,num * num * num);
+}
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> input1,input2;
+    printf(<span class="st">&quot;整数を入力してください:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;input1);
+    <span class="cf">if</span>(input1 % <span class="dv">2</span> == <span class="dv">0</span>){
+        print_square_cube(input1); 
+    } <span class="cf">else</span> {
+        printf(<span class="st">&quot;整数を入力してください:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;input2);
+        <span class="cf">if</span>(input2 % <span class="dv">3</span> == <span class="dv">0</span>){
+            print_square_cube(input1);
+        }
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p><code>print_square_cube</code>関数により、もっとシンプルに表示をすることができるようになりましたね。</p>
+<h3 id="main関数">main関数</h3>
+<p>さて、関数の意味を説明する前に、今まで説明していなかった部分の説明をしておきましょう。</p>
+<p>聡明な読者諸君はお気づきでしょうが（気付いていなくても大丈夫です）、<code>int main(void){ ~ }</code>というのは、関数です。これはmain関数と呼ばれる特別な関数になります。</p>
+<p><code>main</code>関数は、<strong>プログラムが実行される際、一番最初に呼び出される</strong>関数です。main関数の返り値はintです。この返り値はどこに渡されるのかというと、基本はプログラムを実行しているOSに渡されます。OSはこの返り値によって、プログラムが正常に終了したのかを判定したり、異常に終了した場合はなにが原因で終了したのかを判断したりします。<code>0</code>を返しておけば、「プログラムは問題なく終了した」という意味になりますので、main関数の最後には<code>return 0;</code>を書くようにしましょう。</p>
+<blockquote>
+<p>もしあなたが自分でソフトウェアを作りたいのであれば、システムに返す値を調べると便利です。ユーザーからの入力が想定外だった場合はこの値、単純に内部のバグだったらこの値、といったふうにわけられるようになるといいですね。</p>
+</blockquote>
+<h3 id="printfscanfとinclude">printf,scanfとinclude</h3>
+<p>さて、先程&quot;関数は宣言することで使えるようになる&quot;という話をしました。ここで少し疑問を持った人もいるでしょう。 「<code>printf</code>関数はどこにも宣言していないのにどうして使えるの？」</p>
+<p>これを解決してくれるのは、今まで一行目になんとなく書いていた<code>#include &lt;stdio.h&gt;</code>です。</p>
+<p>C言語にはヘッダファイルというものがあります。これは、たくさんの関数を定義したものです。そのヘッダファイルを<code>include</code>を使って読み込むと、そのヘッダファイル内で定義された関数をプログラム中で使うことができます。</p>
+<p><code>printf</code>や<code>scanf</code>は<code>stdio.h</code>の中に定義された関数です。stdioは&quot;standard input output&quot;の略で、標準入出力、つまり文字を画面に出力したりユーザーからの入力を受け付けたりするための関数が揃っているものとなります。</p>
+<p>ほかにも以下のようなヘッダファイルが存在します。</p>
+<ul>
+<li><code>math.h</code> - 数学関連の関数が定義されているヘッダーファイル。正弦に関する計算ができるsin関数や二乗の計算を行ってくれるsquare関数などが使えるようになる。</li>
+<li><code>stdlib.h</code> - 一般的によく使う関数が定義されているヘッダーファイル。文字列を数値に変換する関数など。</li>
+</ul>
+<p>マイコンの機能をいじるためには、マイコンの機能を使えるようにした関数を利用する必要があります。マイコンを作っている会社が作ってくれたヘッダーファイルがありますので、それを使ってマイコンの機能を触っていくことになります。</p>
+<h3 id="関数の意味">関数の意味</h3>
+<p>さて、関数の意味とはなんでしょうか？先程のプログラムをもう一度見てみましょう。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="co">// ある整数値を受け取って、その2乗と3乗を表示する関数。</span>
+<span class="co">// 関数名はなにをしてくれるのか適切に書くこと。</span>
+<span class="dt">void</span> print_square_cube(<span class="dt">int</span> num){
+    printf(<span class="st">&quot;二乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,num * num);
+    printf(<span class="st">&quot;三乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,num * num * num);
+}
+
+<span class="dt">int</span> main(<span class="dt">void</span>){
+    <span class="dt">int</span> input1,input2;
+    printf(<span class="st">&quot;整数を入力してください:&quot;</span>);
+    scanf(<span class="st">&quot;%d&quot;</span>,&amp;input1);
+    <span class="cf">if</span>(input1 % <span class="dv">2</span> == <span class="dv">0</span>){
+        print_square_cube(input1); 
+    } <span class="cf">else</span> {
+        printf(<span class="st">&quot;整数を入力してください:&quot;</span>);
+        scanf(<span class="st">&quot;%d&quot;</span>,&amp;input2);
+        <span class="cf">if</span>(input2 % <span class="dv">3</span> == <span class="dv">0</span>){
+            print_square_cube(input1);
+        }
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>よく関数の利点について、「同じ処理を何度も書かなくて済むから、結果としてプログラムが短くて済む」といった説明をされることがあります。しかし、ちょっと考えてみてください。そんなに行数減っているでしょうか？コメントの行を除いても、最初に書いたプログラムとそこまで行数は変わっていないはずです。プログラム上で同じ処理をなんども書く、ということはそこまでありません。そういう場合は大抵繰り返しをすれば済むわけですから。</p>
+<p>関数の本当の利点は、<strong>ある一連の処理に名前をつける事ができること</strong>です。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">printf(<span class="st">&quot;二乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,num * num);
+printf(<span class="st">&quot;三乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,num * num * num);</code></pre></div>
+<p>例えば上のプログラムでは、という処理に、<code>print_square_cube</code>という名前をつけているわけです。これをプログラム上で見たあなたは、「ああ、二乗と三乗を表示する関数なんだな」ということがわかるはずです。</p>
+<p>処理に名前をつけることの、何が重用なのでしょうか。ここからは大切な話をしていきます。</p>
+<h3 id="具体と抽象">具体と抽象</h3>
+<p>さて、重用な話ですから、メモを取ってください。</p>
+<p>……と言われた時。みなさんはどのようにしてメモをとりますか？紙のメモを取る人なら「バックからメモ帳を取り出して机に置き、自分のペンケースからシャーペンを取り出し右手に持ち、紙に書く準備をする」といった流れでメモを取る用意をするでしょう。PCで取る人は「メニューを開きメモアプリのアイコンをクリックして、メモアプリが起動したらフォーカスを当てる」といった流れで準備をしたのではないのでしょうか。</p>
+<p>「メモを取ってください」という指示だけで、みなさんはそれぞれメモを取るための準備が出来ます。ここで「メモ帳を取り出してペンケースからペンを出して利き手ペンを持ってメモ帳の空いているページを開いてこれから私が言うことを書き留めてください」なんて言われたらどうでしょう？わけがわからないですね。</p>
+<p>これは、わかりやすい指示が<strong>抽象</strong>であるのに対して、わかりづらい方の指示が<strong>具体</strong>であるからです。<strong>具体</strong>と<strong>抽象</strong>という概念が大切になってきます。</p>
+<p>人は抽象の世界にいます。物事の理解や、コミュニケーションなどにおいて、多くのものを抽象的に捉えることによって生活しています。</p>
+<p>一方で、コンピューターは具体の世界にいます。「a+bの値をcに代入する」「&quot;Hello,World&quot;という文字列を表示する」これらはすべて具体です。プログラムを書くときは、具体的な操作手順を1つ1つかいていくことでプログラムを実現しています。</p>
+<p>つまり、プログラムが人間にとって理解しがたいのは当たり前なのです。処理がそのまま書かれたプログラムは具体が並んでいるだけなのですから、その具体の処理を読み解いていく必要があります。自分で抽象的に「これらの処理は一体なにをしているのか」ということを掴んでいかなければいけません。</p>
+<p>関数に処理をまとめるということは、そういった具体の羅列を抽象的にわかりやすくするということに繋がります。並べられた具体からその意味を理解するのと、与えられた抽象から具体の処理を想像するのでは圧倒的に後者の方が楽なのです。</p>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">printf(<span class="st">&quot;二乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,num * num);
+printf(<span class="st">&quot;三乗:%d</span><span class="sc">\n</span><span class="st">&quot;</span>,num * num * num);</code></pre></div>
+<p>という処理をみて、これが抽象的になにをするものなのかを理解することは難しいです<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。<code>print_square_cube</code>という関数名をみて、それがどんな処理をするのか抽象的につかみ、中身を予想しつつ確認するほうが簡単なわけです。</p>
+<p>大きなプログラムになればなるほど、それは大切な事になります。適切に処理を関数にわけて、「この処理はこの関数を呼べばいい」と考えられるようになれば、その処理の具体的な内容は実際にその関数を記述するときだけ考えればいいわけです。また、プログラムを読み直すときにも、いちいち具体の処理を追う必要がなくなるわけです。まだプログラミングを学び始めたばかりであるみなさんにはあまり実感のないことですが、実はプログラミングというのは書くことと同じぐらい読むことが大切なのです。</p>
+<p>プログラムを作るときに考えなければいけないことはとてもたくさんあります。自分の中で問題を個別にわけて考える事が重用になるのです。関数を使うということは、そういった処理を自分の中でまとめる。</p>
+<p>わかっていただけたでしょうか？</p>
+<blockquote>
+<p>今回の関数の章では、<a href="https://sbfl.net/blog/2016/12/26/javascript-function-revisited/">JavaScriptの関数で何ができるのか、もう一度考える</a>という記事を多く参考にしています。わかりやすく関数の重要性が書いてありますので、参考にしてみてください。扱っている言語がCではなくJavaScriptなので、すこし難しいですが。</p>
+</blockquote>
+<p>この部分への理解がちゃんとできるようになると、あなたのプログラミング能力は上達します。最初のうちは理解できなくても、頑張ってプログラミングを勉強していくうちに感覚的に理解できるようになるはずです。</p>
+<p>最後の回では練習問題を多く用意していますので、関数を使って抽象化するということを学んでみてください。</p>
+<h3 id="練習問題">練習問題</h3>
+<ol style="list-style-type: decimal">
+<li>与えられた数字が15の倍数ならFizzBuzz、5の倍数ならBuzz、3の倍数ならFizz、と出力する関数<code>fizzbuzz(int num);</code>を実装してください。その関数を1から100までの数字をあたえて呼び出して、出力がどうなるのかみてみましょう。</li>
+</ol>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>今回の場合はそこまでではないですが<a href="#fnref1">↩</a></p></li>
+</ol>
+</div> 
+  </article>
+   <p class="footer">&copy; 2017 sh4869 All Rights reserved</p>
+ <link rel="stylesheet" href="https://unpkg.com/tippy.js@1.2.0/dist/tippy.css" />
+ <script src="https://unpkg.com/tippy.js@1.2.0/dist/tippy.min.js"></script>
+ <script>
+ var comments = document.querySelectorAll(".footnoteRef");
+ var i = 0;
+ for(i = 0;i < comments.length;i++){
+     var id = comments[i].href.split("#").pop();
+     var text = document.querySelector("#" + id).innerText.replace("↩","");
+     comments[i].title = text;
+     tippy(comments[i],{
+         arrow: 'small',
+         stickyDuration: 100,
+         distance: 9,
+         size: "small"
+     })
+ }
+ </script> 
+</body>
+
+</html>
