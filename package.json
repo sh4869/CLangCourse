@@ -1,0 +1,24 @@
+{
+  "name": "clangcourse",
+  "version": "1.0.0",
+  "description": "C言語講習資料",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sh4869/CLangCourse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sh4869/CLangCourse/issues"
+  },
+  "homepage": "https://github.com/sh4869/CLangCourse#readme",
+  "devDependencies": {
+    "gh-pages": "^1.1.0",
+    "pdc": "^0.2.3"
+  }
+}
