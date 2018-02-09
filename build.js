@@ -5,7 +5,7 @@ const dest = 'dest';
 
 const build_md = () => {
     const target = 'content';
-    const args = ["-c", "github.css", "-c", "user.css", "--template=" + __dirname + "/include/template.html", "-B", __dirname + "/include/before.html", "-A", __dirname + "/include/footer.html", "--mathjax"];
+    const args = ["-c", "github.css", "-c", "user.css", "--template=" + __dirname + "/include/template.html", "-B", __dirname + "/include/before.html", "-A", __dirname + "/include/footer.html", "--mathjax", "-T", "C言語講座"];
     // TODO: もうちょっときれいにかけない？
     fs.readdir(path.join(__dirname, target), (e, files) => {
         files.forEach(element => {
@@ -30,7 +30,7 @@ const build_static = () => {
     fs.readdir(path.join(__dirname, css), (e, files) => {
         files.forEach(element => {
             fs.readFile(path.join(__dirname, css, element), (e, content) => {
-                fs.writeFile(path.join(__dirname, dest, element),content, (err) => {
+                fs.writeFile(path.join(__dirname, dest, element), content, (err) => {
                     if (err) {
                         console.log(err)
                     }
