@@ -10,8 +10,8 @@ Nobuhiro Kasai( @sh4869 )が部活の講習用に作成したC言語講習資料
 
 ## Contents
 
-- [1 Hello-World・変数](1.html)
-- [2 標準入力・条件分岐](2.html)
-- [3 代入式・繰り返し文・論理演算子・switch](3.html)
-- [4 マクロ・関数](4.html)
-- [5 ポインタ・配列・構造体](5.html)
+- [Hello-World・変数](1.html)
+- [標準入力・条件分岐](2.html)
+- [代入式・繰り返し文・論理演算子・switch](3.html)
+- [マクロ・関数](4.html)
+- [ポインタ・配列・構造体](5.html)
